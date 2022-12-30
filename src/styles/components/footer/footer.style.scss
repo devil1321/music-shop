@@ -1,0 +1,13 @@
+.footer{
+    padding:100px 0px 50px;
+    background-color: $black;
+    @import './nav.style';
+    @import './icons.style';
+    @import './foot.style';
+    p{
+        text-align: center;
+        width: 100%;
+        color:grey;
+
+    }
+}

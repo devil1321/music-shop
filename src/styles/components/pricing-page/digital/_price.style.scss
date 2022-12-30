@@ -1,0 +1,15 @@
+.pricing__digital-price{
+    width: 200px;
+    margin:50px auto;
+    text-align: center;
+    &-header{
+        font-size: pxToRem(16);
+    }
+    h2{
+        font-size: pxToRem(50);
+        color:$neon-green;
+    }
+    &-footer{
+        font-size: pxToRem(12);
+    }
+}

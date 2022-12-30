@@ -1,0 +1,24 @@
+a {
+    font-weight: 300;
+    font-family: 'Muli';
+    text-decoration: none;
+    color: $white;
+}
+
+h1,
+h2,
+h3 {
+    font-family: $f-workspace;
+    font-weight: $w-thin;
+}
+
+body {
+    font-family: $f-muli;
+    color: $white;
+    background-color: $medium-black;
+}
+
+.f-bold {
+    font-weight: $w-bold;
+    color: $neon-green;
+}

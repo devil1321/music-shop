@@ -1,0 +1,11 @@
+.pricing__faq-item{
+    h2{
+        font-size: pxToRem(60);
+        width: 100%;
+        text-align: center;
+    }
+    @include createFlex(row,space-between,flex-start,wrap);
+    div{
+        width: calc(100% / 2 - 10px);
+    }
+}

@@ -1,0 +1,48 @@
+.pricing__info-form{
+    border-left: 1px solid $neon-green;
+    width: 40%;
+    padding-left: 20px;
+    &-header{
+        svg{
+            margin-right: 20px;
+            width: 30px;
+            height: 30px;
+        }
+        width: 100%;
+        @include createFlex(row,flex-start,center,null);
+        h2{
+            font-size: pxToRem(40);
+            margin:0px;
+        }
+    }
+    &-field{
+        margin:10px 0px;
+        width: 100%;
+        @include createFlex(row,space-between,center,null);
+        label{
+            margin-right: 20px;
+            min-width: fit-content;
+        }
+        input,textarea{
+            min-width: 72%;
+            background-color: $light-black;
+            border:0px;
+            outline:none;
+            padding:5px;
+            border-radius: 5px;
+        }
+        textarea{
+            transform: translateX(-15px);
+        }
+    }
+    button{
+        cursor: pointer;
+        padding:5px 10px;
+        background-color: $neon-green;
+        color:white;
+        border-radius: 5px;
+        &:hover{
+           background-color: $neon-green-light;
+        }
+    }
+}

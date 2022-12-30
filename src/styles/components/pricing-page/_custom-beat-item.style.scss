@@ -1,0 +1,25 @@
+.pricing__custom-beat-item{
+    padding:10px;
+    width: calc(100% / 6 - 20px);
+    height: 240px;
+    margin:0px 8.5px;
+    border-left: 1px solid $neon-green;
+    border-right: 1px solid $neon-green;
+    h3,p{
+        text-align: center;
+    }
+    h3{
+        color:$neon-green;
+        text-align: center;
+        &:first-of-type{
+            font-size: pxToRem(16);
+        }
+        &:last-of-type{
+            font-weight: 600;
+        }
+    }
+    p{
+        font-size: pxToRem(13);
+        font-weight: 100;
+    }
+}

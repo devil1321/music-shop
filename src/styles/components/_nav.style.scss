@@ -1,0 +1,17 @@
+.nav {
+    font-weight: $w-thin;
+    font-family: $f-muli;
+    padding: $sp-sm 80px;
+    color: $white;
+    background-color: $black;
+    a {
+        color: $white;
+    }
+    @include createFlex(row, space-between, center, null);
+    div {
+        @include createFlex(row, space-between, center, null);
+    }
+    &__divider {
+        padding: 0px 5px;
+    }
+}

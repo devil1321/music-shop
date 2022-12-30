@@ -1,0 +1,20 @@
+.pricing__digital-item{
+    background-color: $light-black;
+    width:calc(100% / 6 - 20px);
+    padding:10px 0px;
+    border-radius: 10px;
+    h2,h3,p{
+        text-align: center;
+    }
+    h2{
+        color:$neon-green
+    }
+    h3{
+        font-weight: bold;
+    }
+    p{
+        margin: 5px 0px;
+        font-weight: 300;
+        color:lightgray;
+    }
+}

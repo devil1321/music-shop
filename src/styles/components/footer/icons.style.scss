@@ -1,0 +1,9 @@
+.footer__icons{
+    margin:30px 0px;
+    @include createFlex(row,center,center,null);
+    i{
+        margin:0px 10px;
+        color:grey;
+
+    }
+}

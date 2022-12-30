@@ -1,0 +1,66 @@
+.pricing {
+    padding: 0px 80px;
+    &__cards {
+        @include createFlex(row, center, center, null);
+        text-align: center;
+    }
+    @import '../components/pricing-page/card.style';
+    @import '../components/pricing-page/info/info.style';
+    @import '../components/pricing-page/count.style';
+    &__count-group{
+        @include createFlex(row,space-between,center,null);
+    }
+    @import '../components/pricing-page/digital/price.style';
+    @import '../components/pricing-page/digital/slider.style';
+    @import '../components/pricing-page/digital/item.style';
+    &__digital-subheader{
+        margin:50px 0px;
+    }
+    &__digital-subtitle{
+        text-align: center
+    }
+    &__digital-subtext{
+        text-align: center
+    }
+    &__digital-sliders{
+        @include createFlex(row,center,center,null);
+        .pricing__digital-slider{
+            margin:0px 20px;
+            width:25%;
+        }
+    }
+    &__digital-items{
+        @include createFlex(row,space-between,center,null);
+    }
+    &__custom-beats{
+        a{
+            color:$neon-green;
+        }
+        p{
+            margin-bottom: 50pxs
+        }
+        @import '../components/pricing-page/custom-beat-item.style';
+    }
+    &__custom-beats-large-item-group{
+        @include createFlex(row,space-between,center,null);
+
+    }
+    &__custom-beats-medium-group{
+        .pricing__custom-beat-item{
+            min-width:calc(100% / 2 - 39px);
+        }
+        @include createFlex(row,space-between,center,null);
+    }
+    @import '../components/pricing-page/sign-up-form.style';
+    @import '../components/pricing-page/client-item.style';
+    &__projects-music-items{
+        @include createFlex(row,space-between,center,null);
+        @import '../components/pricing-page/projects/music-item.style';
+    }
+    &__projects-youtube-items{
+        @include createFlex(row,space-between,center,null);
+        @import '../components/pricing-page/projects/youtube-item.style';
+    }
+    @import '../components/pricing-page/faq-item.style';
+
+}

@@ -1,0 +1,9 @@
+@import  './introduce.style';
+@import  './form.style';
+
+.pricing{
+    &__info-content{
+        @include createFlex(row,space-between,center,null)
+    }
+
+}

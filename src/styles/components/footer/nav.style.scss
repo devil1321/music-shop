@@ -1,0 +1,28 @@
+.footer__nav{
+    @include createFlex(row,center,center,null);
+    i,a{
+        margin-right: 20px;
+        color:grey;
+
+    }
+    a{
+        position: relative;
+        top:0px;
+        left:0px;
+        &:hover{
+            &::before{
+                width: 80%;
+            }
+        }
+        &::before{
+            content:'';
+            position: absolute;
+            top:20px;
+            left:50%;
+            width: 0%;
+            transform: translateX(-50%);
+            border-bottom: 2px solid $medium-black;
+           
+        }
+    }
+}

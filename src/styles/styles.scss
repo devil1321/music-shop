@@ -1,0 +1,22 @@
+/*******************GLOBAL************************/
+
+@import './normalize.style';
+@import './variables.style';
+@import './fonts.style';
+@import './mixins.style';
+@import './global.style';
+@import './animations.style';
+
+/*******************COMPONENTS********************/
+
+@import './components/layout.style';
+@import './components/title.style';
+@import './components/nav.style';
+@import './components/navbar.style';
+@import './components/footer/footer.style';
+
+
+/*******************PAGES*************************/
+
+@import './pages/pricing.style';
+@import './pages/beats.style';

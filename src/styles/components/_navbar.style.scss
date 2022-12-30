@@ -1,0 +1,29 @@
+.navbar {
+    padding: $sp-lg 0px;
+    @include createFlex(row, center, center, null);
+    a {
+        position: relative;
+        top: 0px;
+        left: 0px;
+        margin: 0px $sp-sm-md;
+        font-family: $f-workspace;
+        font-weight: $w-thin;
+        font-size: pxToRem(25);
+        border: 0px;
+        &:before {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            width: 0%;
+            border-bottom: 1px solid $neon-green;
+            transform: translateX(-50%);
+            transition: width 0.2s ease-in-out;
+        }
+        &:hover {
+            &::before {
+                width: 70%;
+            }
+        }
+    }
+}

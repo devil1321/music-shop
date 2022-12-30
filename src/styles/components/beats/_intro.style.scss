@@ -1,0 +1,15 @@
+.beats__intro{
+    width: 30%;
+    margin:100px auto;
+    text-align: center;
+    h1{
+        font-size: pxToRem(60);
+    }
+    button{
+        padding:10px 20px;
+        background-color: $neon-green;
+        color:white;
+        font-weight: bold;
+        border-radius: 5px;;
+    }
+}

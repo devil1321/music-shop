@@ -1,0 +1,52 @@
+.beats__detail{
+    &-search{
+        box-sizing: border-box;
+        padding: 0px 50px;
+        width: 100%;
+        @include createFlex(row,space-between,center,null);
+    }
+    &-form{
+        width: 70%;
+    }
+    &-form-field{
+       padding:10px;
+       width: 100%;
+       background-color:  $light-black;
+       @include createFlex(row,space-between,center,null);
+       input{
+        color:white;
+        width: 97%;
+        background-color: transparent;
+        outline: none;
+        border:0px;
+        &:active,&:focus{
+            outline: none;
+            border:0px;
+        }
+       }
+    }
+    &-group{
+        width:15%;
+        @include createFlex(row,space-between,center,null);
+        i{
+            color:white;
+            margin-right: 5px;
+        }
+        div{
+            cursor: pointer;
+            padding: 10px 20px;
+            height: 20px;
+            border:1px solid $light-black;
+            @include createFlex(row,space-between,center,null);
+            p{
+                margin-top: 20px;
+            }
+            i,p{
+                pointer-events: none;
+            }
+        }
+    }
+    &-active{
+        border:1px solid $neon-green !important;
+    }
+}
