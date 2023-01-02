@@ -60,10 +60,10 @@ const Player:React.FC<{image:IGatsbyImageData}> = ({image}) => {
 
 
 const handlePlay = ()=>{
-  if(isPlay === true){
+  if(isPlay === true && audioRef.current.paused){
     audioCtx.resume()
     const play = audioRef.current.play()
-  }else if(isPlay === false){
+  }else if(isPlay === false && !audioRef.current.paused){
     audioRef.current.pause()
   }
 }
