@@ -63,7 +63,7 @@ const handlePlay = ()=>{
   if(isPlay === true && audioRef.current.paused){
     audioCtx.resume()
     const play = audioRef.current.play()
-  }else if(isPlay === false && !audioRef.current.paused){
+  }else if(isPlay === false){
     audioRef.current.pause()
   }
 }
