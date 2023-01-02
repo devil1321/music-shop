@@ -160,9 +160,11 @@ useEffect(()=>{
     createBpm(src)
     if(typeof window !== 'undefined'){
       setAudio(new Audio())
+    }
+    if(audio){
       audio.src = src  
     }
-},[src])
+},[src,audio])
 
   return (
     <div className='beats__beat-item'
