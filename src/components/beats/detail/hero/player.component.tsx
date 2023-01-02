@@ -32,6 +32,7 @@ const Player:React.FC<{image:IGatsbyImageData}> = ({image}) => {
     if(typeof window !== 'undefined'){
       if(tempSrc !== src){
         if(audioRef?.current){
+          audioRef.current.pause()
           audioRef.current.remove()
         }
         // fix
