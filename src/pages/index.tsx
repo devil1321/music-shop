@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Pricing from '../components/pricing-page/components'
 import Global from '../components/global/components'
 import { Link, graphql } from 'gatsby'
 import { useDynamicImage } from '../hooks/useImage'
-import { IGatsbyImageData, getImage } from 'gatsby-plugin-image'
+import { IGatsbyImageData } from 'gatsby-plugin-image'
 import { PricingPageImages } from '../interfaces'
 
 interface PricingPageProps {
@@ -12,6 +12,16 @@ interface PricingPageProps {
 
 const PricingPage: React.FC<PricingPageProps> = ({ data }) => {
   const images = data.allImageSharp.edges
+  const [price,setPrice] = useState<number>(19)
+  const [result,setResult] = useState<number>(0)
+  const [tracks,setTracks] = useState<number>(0)
+  const [songs,setSongs] = useState<number>(0)
+
+  useEffect(() => {
+    setResult(Number(((tracks * price) + (songs * price)).toFixed(2)))
+  }, [tracks,songs])
+  
+
   return (
     <Global.Layout title="Pricing" className='pricing'>
 
@@ -44,10 +54,10 @@ const PricingPage: React.FC<PricingPageProps> = ({ data }) => {
         <div className="pricing__digital">
           <Global.Title html="Digital Online <b>Mix And Mastering</b>" />
           <p>Every artist who really means it with his music wants his songs to sound professional. And you are lucky, because one way to do it is the online digital mix and mastering, made by a professional with years of experience, which I am!</p>
-          <Pricing.Digital.Price price={29} />
+          <Pricing.Digital.Price price={result} />
           <div className="pricing__digital-sliders">
-            <Pricing.Digital.Slider min={1} max={25} label="Songs" />
-            <Pricing.Digital.Slider min={3} max={30} label="Track items" />
+            <Pricing.Digital.Slider setValue={setTracks} min={1} max={25} label="Songs" />
+            <Pricing.Digital.Slider setValue={setSongs} min={3} max={30} label="Track items" />
           </div>
           <div className="pricing__digital-subheader">
             <h3 className='pricing__digital-subtitle'>Favoruite <b>bundles</b></h3>
