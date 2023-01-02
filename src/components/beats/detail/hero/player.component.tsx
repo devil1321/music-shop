@@ -114,7 +114,7 @@ const handlePlay = ()=>{
    }
 
   useEffect(()=>{
-    audioCtx.resume()
+    audioCtx?.resume()
     if(isLoad){
       connectAudio()
       cancelAllAnimationFrames()
