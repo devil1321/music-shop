@@ -19,7 +19,7 @@ interface ItemProps{
 const Item:React.FC<ItemProps> = ({isActive,handleMakeActive,index,image,src,title,price,genres,tags}) => {
 
     const [bpm,setBpm] = useState<number>(0)
-    const [audio,setAudio] = useState<any>(new Audio())
+    const [audio,setAudio] = useState<any>()
 
     const dispatch = useDispatch()
     const playerActions = bindActionCreators(PlayerActions,dispatch)
@@ -158,7 +158,10 @@ const Item:React.FC<ItemProps> = ({isActive,handleMakeActive,index,image,src,tit
 
 useEffect(()=>{
     createBpm(src)
-    audio.src = src  
+    if(typeof window !== 'undefined'){
+      setAudio(new Audio())
+      audio.src = src  
+    }
 },[src])
 
   return (
