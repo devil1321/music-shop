@@ -31,7 +31,6 @@ const Player:React.FC<{image:IGatsbyImageData}> = ({image}) => {
   const connectAudio = () =>{
     if(typeof window !== 'undefined'){
       if(tempSrc !== src){
-        audioRef.current.pause()
         audioRef.current.remove()
         const audioEl = new Audio()
         audioEl.src = src
