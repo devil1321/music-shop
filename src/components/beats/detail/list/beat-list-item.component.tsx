@@ -172,8 +172,10 @@ useEffect(()=>{
       setIsSrcSet(true)
     }
     if(isSrcSet){
-      setDuration(Number((audio?.duration / 100).toFixed(2)))
-    }
+      audio.addEventListener('loadedmetadata', function() {
+        setDuration(Number((audio?.duration / 100).toFixed(2)))
+    })
+  }
 },[src,audio,isLoad,isSrcSet])
 
   return (
