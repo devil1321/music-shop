@@ -19,6 +19,7 @@ interface ItemProps{
 const Item:React.FC<ItemProps> = ({isActive,handleMakeActive,index,image,src,title,price,genres,tags}) => {
 
     const [bpm,setBpm] = useState<number>(0)
+    const [isLoad,setIsLoad] = useState<boolean>(false)
     const [audio,setAudio] = useState<any>()
 
     const dispatch = useDispatch()
@@ -158,13 +159,16 @@ const Item:React.FC<ItemProps> = ({isActive,handleMakeActive,index,image,src,tit
 
 useEffect(()=>{
     createBpm(src)
-    if(typeof window !== 'undefined'){
-      setAudio(new Audio())
+    if(!isLoad){
+      if(typeof window !== 'undefined'){
+        setAudio(new Audio())
+        setIsLoad(true)
+      }
     }
-    if(audio){
+      if(audio){
       audio.src = src  
     }
-},[src,audio])
+},[src,audio,isLoad])
 
   return (
     <div className='beats__beat-item'
