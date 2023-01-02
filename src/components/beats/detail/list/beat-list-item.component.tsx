@@ -21,6 +21,7 @@ const Item:React.FC<ItemProps> = ({isActive,handleMakeActive,index,image,src,tit
     const [bpm,setBpm] = useState<number>(0)
     const [isLoad,setIsLoad] = useState<boolean>(false)
     const [audio,setAudio] = useState<any>()
+    const [duration,setDuration] = useState<number>(0)
 
     const dispatch = useDispatch()
     const playerActions = bindActionCreators(PlayerActions,dispatch)
@@ -167,6 +168,7 @@ useEffect(()=>{
     }
       if(audio){
       audio.src = src  
+      setDuration(Number((audio?.duration / 100).toFixed(2)))
     }
 },[src,audio,isLoad])
 
@@ -179,7 +181,7 @@ useEffect(()=>{
             {image && <GatsbyImage image={image} alt="beat-img" />}
         </div>
         <h3>{title}</h3>
-        <p>{(audio?.duration / 100).toFixed(2)}s</p>
+        <p>{duration}s</p>
         <p>{bpm} BPM</p>
         <div className="beats__beat-item-tags">
             {tags.map(tag => <p key={tag}>{tag}</p>)}
