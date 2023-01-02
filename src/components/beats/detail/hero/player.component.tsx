@@ -19,10 +19,10 @@ const Player:React.FC<{image:IGatsbyImageData}> = ({image}) => {
   const [beat,setBeat] = useState<Uint8Array>(new Uint8Array())
   const [tempSrc,setTempSrc] = useState<string>('')
 
-  const [audioCtx,setAudioCtx] = useState<AudioContext>(new AudioContext())
+  const [audioCtx,setAudioCtx] = useState<any>()
   const [bufferLength,setBufferLength] = useState<number>(0)
 
-  const audioRef = useRef(new Audio()) as MutableRefObject<HTMLAudioElement>
+  const audioRef = useRef() as MutableRefObject<HTMLAudioElement>
   const canvasRefCircle = useRef() as MutableRefObject<HTMLCanvasElement>
   const canvasRefBars = useRef() as MutableRefObject<HTMLCanvasElement>
   const analyserRef = useRef() as MutableRefObject<any>
