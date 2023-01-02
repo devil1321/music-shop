@@ -1,0 +1,11 @@
+.about__introduce{
+    margin:100px 0px 0px;
+    @include createFlex(row,center,center,null);
+    &-img{
+        margin-right: 20px;
+        min-width: 300px;
+        min-height:300px;
+        overflow: hidden;
+        border-radius: 100%;
+    }
+}

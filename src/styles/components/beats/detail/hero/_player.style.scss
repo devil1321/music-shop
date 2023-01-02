@@ -1,7 +1,4 @@
 .beats__player{
-    // audio{
-    //     visibility: hidden;;
-    // }
     position: relative;
     top:0px;
     left:0px;
@@ -47,7 +44,7 @@
             cursor: pointer;
             position: absolute;
             top:170px;
-            left:6.2%;
+            left:5.2%;
             z-index: 4;
             color:$neon-green;
         }

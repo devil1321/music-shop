@@ -23,10 +23,11 @@ const CustomBeatPage:React.FC<CustomBeatProps> = ({data}) => {
         <link rel="icon" href="/favicon.ico" /> */}
       <main>
         <Beats.Intro html="<b>Beats</b> for you"/>
-        <Beats.Detail.Detail 
-          image={useDynamicImage({images,name:"detail-bg.png"}) as IGatsbyImageData} 
-          placeholder={useDynamicImage({images,name:"music-placeholder.png"}) as IGatsbyImageData} 
-        />
+          <Beats.Detail.Search />
+        <div className="beats__detail">
+          <Beats.Detail.Hero image={useDynamicImage({images,name:"detail-bg.png"}) as IGatsbyImageData} />
+          <Beats.Beat.List image={useDynamicImage({images,name:"music-placeholder.png"}) as IGatsbyImageData} />
+        </div>
       </main>
       
     </Global.Layout>

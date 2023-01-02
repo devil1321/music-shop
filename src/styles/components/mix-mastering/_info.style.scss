@@ -1,0 +1,21 @@
+.mix-mastering__info{
+    margin:100px 0px;
+    text-align: justify;
+    h2{
+        text-align: center;
+        font-size: pxToRem(40);
+    }
+    div{
+        margin-right:5px;
+    }
+    &-item-wrapper{
+        @include createFlex(row,flex-start,flex-start,null);
+    }
+    &-items-wrapper{
+        @include createFlex(row,flex-start,flex-start,wrap);
+        div{
+            margin-right:10px;
+            width: calc(50% - 10px);
+        }
+    }
+}

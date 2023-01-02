@@ -1,0 +1,59 @@
+.beats__beat-item{
+    cursor: pointer;
+    &:hover{
+        background-color: $light-black;
+    }
+    margin:5px 0px;
+    @include createFlex(row,flex-start,center,null);
+    &-image{
+        width: 70px;
+        height: 70px;;
+    }
+    h3,p{
+        font-weight: bold;
+        margin:0px 10px;
+    }
+    &-tags{
+        @include createFlex(row,space-between,center,null);
+    }
+    &-play{
+        position: relative;
+        left:100px;
+        top:0px;
+    }
+    &-controls{
+        margin-left: auto;
+        @include createFlex(row,space-between,center,null);
+        button{
+            margin-right: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 20px 20px;
+            height: 20px;
+            border:1px solid $neon-green;
+            color:$neon-green;
+            background-color: transparent;
+            @include createFlex(row,space-between,center,null);
+            &:hover{
+                background-color: $neon-green-light;
+                color:white;
+                i{
+                    color:white;
+                }
+            }
+            i{
+                margin-right: 5px;
+                pointer-events: none;
+                color:$neon-green;
+            }
+        }
+      
+    }
+    &-icon{
+        color:white;
+        margin:0px 10px;
+        i{
+            color:white;
+        }
+    }
+}

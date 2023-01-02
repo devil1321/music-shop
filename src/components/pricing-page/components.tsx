@@ -7,6 +7,7 @@ import SignUpForm from './sign-up-form.component';
 import Client from './client-item.component';
 import Projects from './projects/components';
 import FaqItem from './faq-item.component';
+import SignUp from './sign-up.component';
 
 export default {
     Card,
@@ -14,6 +15,7 @@ export default {
     Count,
     Digital,
     CustomBeatItem,
+    SignUp,
     SignUpForm,
     Client,
     Projects,

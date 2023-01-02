@@ -16,7 +16,40 @@
 @import './components/footer/footer.style';
 
 
+/*****************PAGES-COMPONENTS*****************/
+
+
+// Pricing Components
+
+@import './components/pricing-page/client-item.style';
+@import './components/pricing-page/card.style';
+@import './components/pricing-page/info/info.style';
+@import './components/pricing-page/count.style';
+@import './components/pricing-page/digital/price.style';
+@import './components/pricing-page/digital/slider.style';
+@import './components/pricing-page/digital/item.style';
+@import './components/pricing-page/custom-beat-item.style';
+@import './components/pricing-page/sign-up-form.style';
+@import './components/pricing-page/projects/youtube-item.style';
+@import './components/pricing-page/faq-item.style';
+
+// Mix Mastering Components
+
+@import './components/mix-mastering/info.style';
+@import './components/mix-mastering/form.style';
+
+// About Components
+
+
+@import './components/about/introduce.style';
+@import './components/about/reference.style';
+
 /*******************PAGES*************************/
 
 @import './pages/pricing.style';
 @import './pages/beats.style';
+@import './pages/mix-mastering.style';
+@import './pages/custom-beat.style';
+@import './pages/about.style';
+@import './pages/rap-challenge.style';
+@import './pages/my-account.style';

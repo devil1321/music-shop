@@ -1,0 +1,78 @@
+.mix-mastering__form{
+    width: 45%;
+    margin:100px auto;
+    .pricing__digital-slider{
+        input::-webkit-slider-thumb{
+            border-radius: 100%;
+        }
+        input{
+            height: 10px;
+            border-radius:25px;
+        }
+    }
+    &-title{
+        @include createFlex(row,center,center,null);
+        h3{
+           font-size: pxToRem(40); 
+        }
+        i{
+            margin-right: 10px;
+        }
+    }
+    &-field{
+        margin:20px 0px;
+        label{
+            display: block;
+            font-weight: bold;
+            margin:5px 0px;
+        }
+        input,textarea{
+            padding:5px;
+            border-radius: 5px;
+            outline:none;
+            border:0px;
+            width: 100%;
+            background-color: $light-black;
+        }
+    }
+    &-sliders-wrapper{
+        @include createFlex(row,space-between,center,null);
+    }
+    &-sliders{
+        min-width: 50%;
+    }
+    &-result{
+        padding-top: 20px;
+        min-width:50%;
+        text-align: center;
+        font-weight: bold;
+        font-size: pxToRem(30);
+    }
+    &-checkbox{
+        label{
+            margin-left: 10px;
+        }
+        margin:10px 0px;
+        a{
+            color:$neon-green;
+        }
+        @include createFlex(row,flex-start,flex-start,null);
+    }
+    button{
+        cursor: pointer;
+        padding:8px 20px;
+        background-color: $neon-green;
+        outline: none;
+        border: 0px;
+        border-radius: 5px;
+        font-weight: bold;
+        color:white;
+        &:hover{
+            background-color: $neon-green-light;
+        }
+        &:active,&:focus{
+            outline: none;
+            border: 0px;
+        }
+    }
+}

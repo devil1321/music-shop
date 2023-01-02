@@ -1,14 +1,19 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect, SetStateAction } from 'react'
 
 interface SliderProps{ 
   min:number, 
   max: number 
   label:string;
+  setValue?:(val:number) => any;
 }
 
-const Slider:React.FC<SliderProps> = ({min,max,label}) => {
+const Slider:React.FC<SliderProps> = ({min,max,label,setValue}) => {
 
   const [ val , setVal ] = useState<number>(Number((max / 2).toFixed(0)))
+
+  useEffect(()=>{
+    setValue && setValue(val) 
+  },[val])
 
   return (
     <div className="pricing__digital-slider">

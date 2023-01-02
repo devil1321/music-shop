@@ -1,0 +1,13 @@
+.about__reference{
+    &-img{
+        width: 100%;
+    }
+    &-content{
+        @include createFlex(row,space-between,center,wrap);
+    }
+    &-item{
+        margin:10px;
+        width: calc(100% / 4 - 20px);
+    }
+ 
+}
