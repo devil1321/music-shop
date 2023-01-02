@@ -173,7 +173,7 @@ useEffect(()=>{
             {image && <GatsbyImage image={image} alt="beat-img" />}
         </div>
         <h3>{title}</h3>
-        <p>{(audio.duration / 100).toFixed(2)}s</p>
+        <p>{(audio?.duration / 100).toFixed(2)}s</p>
         <p>{bpm} BPM</p>
         <div className="beats__beat-item-tags">
             {tags.map(tag => <p key={tag}>{tag}</p>)}
