@@ -20,6 +20,7 @@ const Item:React.FC<ItemProps> = ({isActive,handleMakeActive,index,image,src,tit
 
     const [bpm,setBpm] = useState<number>(0)
     const [isLoad,setIsLoad] = useState<boolean>(false)
+    const [isSrcSet,setIsSrcSet] = useState<boolean>(false)
     const [audio,setAudio] = useState<any>()
     const [duration,setDuration] = useState<number>(0)
 
@@ -168,9 +169,12 @@ useEffect(()=>{
     }
       if(audio){
       audio.src = src  
+      setIsSrcSet(true)
+    }
+    if(isSrcSet){
       setDuration(Number((audio?.duration / 100).toFixed(2)))
     }
-},[src,audio,isLoad])
+},[src,audio,isLoad,isSrcSet])
 
   return (
     <div className='beats__beat-item'
