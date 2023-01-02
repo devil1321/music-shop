@@ -32,6 +32,7 @@ const Player:React.FC<{image:IGatsbyImageData}> = ({image}) => {
     if(typeof window !== 'undefined'){
       if(tempSrc !== src){
         audioRef.current.remove()
+        // fix
         const audioEl = new Audio()
         audioEl.src = src
         audioEl.preload = 'metadata'
