@@ -1,0 +1,17 @@
+.rap-challenge__hero-item{
+   width: 60%;
+   text-align: center;
+   margin: 0px auto;
+   @include breakpoint-down(small){
+    width: 100%;
+   }
+   h2,p{
+    margin:10px 0px;
+   }
+   p{
+    font-size: pxToRem(20);
+   }
+   h2{
+     font-size:pxToRem(40);
+   }
+}

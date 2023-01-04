@@ -1,0 +1,23 @@
+.rap-challenge__small-item{
+    position: relative;
+    top:30px;
+    left:0px;
+    margin:0px 50px;
+    width: 200px;
+    &-img{
+        margin: 0px;
+        padding: 0px;
+        width: 200px;
+        height:200px;
+       
+    }
+    a{
+        position: relative;
+        top:-50px;
+        left:0px;
+        display: block;
+        margin:0px;
+        text-align: center;
+        width: 100%;
+    }
+}

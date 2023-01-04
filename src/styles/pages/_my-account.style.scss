@@ -1,3 +1,6 @@
 .my-account{
   padding: 0px 80px;
+  @include breakpoint-down(medium-sm){
+    padding: 0px 20px;
+}
 }

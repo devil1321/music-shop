@@ -1,3 +1,6 @@
 .footer__foot{
     color:grey;
+    @include breakpoint-down(small){
+        font-size: pxToRem(8);
+    }
 }

@@ -1,5 +1,8 @@
 .about{
   padding: 0px 80px;
+  @include breakpoint-down(medium-sm){
+    padding: 0px 20px;
+}
   .pricing__count{
     margin:100px 0px 0px;
   }

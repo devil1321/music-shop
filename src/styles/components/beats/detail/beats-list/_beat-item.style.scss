@@ -13,6 +13,11 @@
         font-weight: bold;
         margin:0px 10px;
     }
+    &-time{
+        @include breakpoint-down(medium-sm){
+            display: none;
+        }
+    }
     &-tags{
         @include createFlex(row,space-between,center,null);
     }
@@ -20,6 +25,9 @@
         position: relative;
         left:100px;
         top:0px;
+        @include breakpoint-down(medium-sm){
+            left:0px;
+        }
     }
     &-controls{
         margin-left: auto;
@@ -34,6 +42,9 @@
             color:$neon-green;
             background-color: transparent;
             @include createFlex(row,space-between,center,null);
+            @include breakpoint-down(medium-sm){
+                margin-right: 10px;
+            }
             &:hover{
                 background-color: $neon-green-light;
                 color:white;

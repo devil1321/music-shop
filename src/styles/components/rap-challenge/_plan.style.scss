@@ -1,0 +1,77 @@
+.rap-challenge__plan{
+    &-intro{
+        ol{
+            margin:20px 40px;
+            padding:0px;
+            li{
+                margin: 5px 0px;
+                color:white;
+            }
+        }
+    }
+    &-items-wrapper{
+        width: 70%;
+        margin:50px auto;
+        h3{
+            font-size: pxToRem(30);
+        }
+    }
+    &-items{
+        @include createFlex(row,center,center,null);
+        @include breakpoint-down(small){
+            @include createFlex(column,center,center,null);
+        }
+    }
+    &-item{
+        width: 200px;
+        height: 180px;
+        padding:10px;
+        text-align: center;
+        border: 1px solid $light-black;
+        @include breakpoint-down(small){
+            margin:20px 0px;
+        }
+
+    }
+    &-divider{
+        div:first-of-type{
+            position: relative;
+            top:14px;
+            left:0px;
+            width: 50px;
+            height:15px;
+            border-right: transparent;
+            border-left: transparent;
+            border-top: 1px solid $light-black;
+            border-bottom: 1px solid $light-black;
+            background-color: $light-black;
+            @include breakpoint-down(medium-sm){
+                top:24px;
+            }
+            @include breakpoint-down(small){
+                transform: rotate(90deg);
+                top:10px;
+                left:10%;
+            }
+        }
+        div:last-of-type{
+            margin-right: 45px;
+            position: relative;
+            top:-13px;
+            left:45px;
+            width: 0; 
+            height: 0; 
+            border-top: 20px solid transparent;
+            border-bottom: 20px solid transparent;
+            border-left: 20px solid $light-black;
+            @include breakpoint-down(medium-sm){
+                top:-3px;
+            }
+            @include breakpoint-down(small){
+                transform: rotate(90deg);
+                top:12px;
+                left:22px;
+            }
+        }
+    }
+}

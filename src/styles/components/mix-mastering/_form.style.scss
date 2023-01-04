@@ -1,6 +1,12 @@
 .mix-mastering__form{
     width: 45%;
     margin:100px auto;
+    @include breakpoint-down(medium-sm){
+        width: 65%;
+    }
+    @include breakpoint-down(small){
+        width: 100%;
+    }
     .pricing__digital-slider{
         input::-webkit-slider-thumb{
             border-radius: 100%;
@@ -14,6 +20,9 @@
         @include createFlex(row,center,center,null);
         h3{
            font-size: pxToRem(40); 
+           @include breakpoint-down(small){
+            font-size: pxToRem(25); 
+           }
         }
         i{
             margin-right: 10px;

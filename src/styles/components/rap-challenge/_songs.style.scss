@@ -1,0 +1,50 @@
+.rap-challenge__songs{
+    &-header{
+        @include createFlex(row,flex-start,center,null);
+        @include breakpoint-down(small){
+            @include createFlex(row,space-between,center,null);
+        }
+        p{
+            margin-right: 235px;
+            @include breakpoint-down(medium-sm){
+                margin-right: 164px;
+            }
+            @include breakpoint-down(small){
+                margin-right: 0px;
+            }
+        }
+        p:nth-of-type(3){
+            margin-right: 125px;
+            @include breakpoint-down(medium-sm){
+                margin-right: 50px;
+            }
+            @include breakpoint-down(small){
+                margin-right: 0px;
+            }
+        }
+    }
+    &-track{
+        padding:20px 0px;
+        border-bottom: 1px solid $light-black;
+        border-top: 1px solid $light-black;
+        width: 100%;
+        @include createFlex(row,flex-start,center,wrap);
+        @include breakpoint-down(small){
+            @include createFlex(row,space-between,center,wrap)
+        }
+        p,audio{
+            margin-right: 120px;
+            @include breakpoint-down(medium-sm){
+                margin-right: 44px;
+            }
+            @include breakpoint-down(small){
+                margin-right: 0px;
+            }
+        }
+        audio{
+            @include breakpoint-down(small){
+                margin: 0px auto;
+            }
+        }
+    }
+}

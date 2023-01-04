@@ -41,6 +41,9 @@
         
         height: 700px;
         overflow-y: scroll;
+        @include breakpoint-down(small){
+          overflow: scroll;
+        }
         @import '../components/beats/detail/beats-list/beats.style';
     }
 }

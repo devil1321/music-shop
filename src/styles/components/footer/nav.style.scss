@@ -1,8 +1,17 @@
 .footer__nav{
     @include createFlex(row,center,center,null);
+    @include breakpoint-down(small){
+        @include createFlex(row,center,center,wrap);
+    }
     i,a{
         margin-right: 20px;
         color:grey;
+        @include breakpoint-down(medium-sm){
+            margin-right: 10px;
+        }
+        @include breakpoint-down(small){
+            margin:20px;
+        }
 
     }
     a{

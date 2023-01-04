@@ -3,7 +3,10 @@
 
 .pricing{
     &__info-content{
-        @include createFlex(row,space-between,center,null)
+        @include createFlex(row,space-between,center,null);
+        @include breakpoint-down(medium-sm){
+            @include createFlex(row,space-between,center,wrap);
+        }
     }
 
 }

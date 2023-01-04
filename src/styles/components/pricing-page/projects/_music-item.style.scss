@@ -1,5 +1,8 @@
 .pricing__music-item{
     width:calc(100% / 3 - 10px);
+    @include breakpoint-down(small){
+        width: 100%;
+    }
     h3,p{
         margin:5px 0px;
     }

@@ -3,6 +3,14 @@
     width:calc(100% / 6 - 20px);
     padding:10px 0px;
     border-radius: 10px;
+    @include breakpoint-down(medium-sm){
+        margin:10px 0px;
+        width: calc(100% / 3 - 20px);
+    }
+    @include breakpoint-down(small){
+        margin:10px 0px;
+        width: 100%;
+    }
     h2,h3,p{
         text-align: center;
     }

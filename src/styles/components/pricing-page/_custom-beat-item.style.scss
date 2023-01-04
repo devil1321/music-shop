@@ -5,6 +5,12 @@
     margin:0px 8.5px;
     border-left: 1px solid $neon-green;
     border-right: 1px solid $neon-green;
+    @include breakpoint-down(medium-sm){
+        width: calc(100% / 3 - 40px);
+    }
+    @include breakpoint-down(small){
+        width: 100%;
+    }
     h3,p{
         text-align: center;
     }

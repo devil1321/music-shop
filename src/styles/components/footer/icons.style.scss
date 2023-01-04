@@ -1,9 +1,16 @@
 .footer__icons{
     margin:30px 0px;
     @include createFlex(row,center,center,null);
+    @include breakpoint-down(small){
+        @include createFlex(row,center,center,wrap);
+    }
     i{
         margin:0px 10px;
         color:grey;
-
+        @include breakpoint-down(small){
+            @include createFlex(row,center,center,wrap);
+           margin:10px;
+           width: 25%;
+        }
     }
 }

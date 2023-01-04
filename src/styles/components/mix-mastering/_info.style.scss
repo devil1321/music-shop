@@ -10,12 +10,18 @@
     }
     &-item-wrapper{
         @include createFlex(row,flex-start,flex-start,null);
+        @include breakpoint-down(small){
+            @include createFlex(row,flex-start,flex-start,wrap);
+        }
     }
     &-items-wrapper{
         @include createFlex(row,flex-start,flex-start,wrap);
         div{
             margin-right:10px;
             width: calc(50% - 10px);
+            @include breakpoint-down(small){
+                width: 100%;
+            }
         }
     }
 }

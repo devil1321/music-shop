@@ -1,6 +1,12 @@
 .pricing__sing-up-form{
     width: 40%;
     margin: 50px auto;
+    @include breakpoint-down(medium-sm){
+        width: 60%;
+    }
+    @include breakpoint-down(small){
+        width: 100%;
+    }
     button{
         display: block;
         margin:0px auto;

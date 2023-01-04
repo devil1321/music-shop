@@ -4,8 +4,14 @@
     padding: $sp-sm 80px;
     color: $white;
     background-color: $black;
+    @include breakpoint-down(small){
+        padding: $sp-sm 10px;
+        @include createFlex(row, space-between, center, wrap);
+
+    }
     a {
         color: $white;
+      
     }
     @include createFlex(row, space-between, center, null);
     div {

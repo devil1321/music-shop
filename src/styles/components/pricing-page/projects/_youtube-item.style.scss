@@ -1,5 +1,8 @@
 .pricing__youtube-item{
     width: calc(100% / 3 - 10px);
+    @include breakpoint-down(small){
+        width: 100%;
+    }
     &-title-wrapper{
         @include createFlex(row,flex-start,center,null);
         svg{

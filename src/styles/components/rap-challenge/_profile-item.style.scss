@@ -1,0 +1,12 @@
+.rap-challenge__profile-item{
+    margin:30px;
+    &-img{
+        width: 200px;
+        height:200px;
+        overflow: hidden;
+        border-radius: 100%;
+    }
+    h3{
+        text-align:center;
+    }
+}

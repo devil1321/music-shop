@@ -187,7 +187,7 @@ useEffect(()=>{
             {image && <GatsbyImage image={image} alt="beat-img" />}
         </div>
         <h3>{title}</h3>
-        <p>{duration}s</p>
+        <p className='beats__beat-item-time'>{duration}s</p>
         <p>{bpm} BPM</p>
         <div className="beats__beat-item-tags">
             {tags.map(tag => <p key={tag}>{tag}</p>)}

@@ -2,6 +2,13 @@
     width: 30%;
     margin:100px auto;
     text-align: center;
+    @include breakpoint-down(medium-sm){
+        width: 50%;
+    }
+    @include breakpoint-down(small){
+        width: 70%;
+        margin:0px auto;
+    }
     h1{
         font-size: pxToRem(60);
     }

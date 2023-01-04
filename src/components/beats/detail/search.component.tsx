@@ -11,7 +11,7 @@ const Search = () => {
 
   return (
     <div className='beats__detail-search'>
-      <h3>FoscoAlma</h3>
+      <h3 className='beats__detail-logo'>FoscoAlma</h3>
       <form action="" className="beats__detail-form">
         <div className="beats__detail-form-field">
             <input type="text" />

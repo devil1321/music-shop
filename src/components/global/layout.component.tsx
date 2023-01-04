@@ -22,7 +22,7 @@ interface LayoutProps {
 
 const Layout:React.FC<LayoutProps> = ({children,title,className,meta}) => {
   return (
-      <div>
+      <div className='container'>
         {/* <Head>
           <title>Shop | {title}</title>
           {meta?.map((m:MetaTag,i:number) => <meta key={i} name={m.name} content={m.content} />)}

@@ -2,12 +2,21 @@
 
 .pricing {
     padding: 0px 80px;
+    @include breakpoint-down(medium-sm){
+        padding: 0px 20px;
+    }
     &__cards {
         @include createFlex(row, center, center, null);
         text-align: center;
+        @include breakpoint-down(small){
+            @include createFlex(row, center, center, wrap);
+        }
     }
     &__count-group{
         @include createFlex(row,space-between,center,null);
+        @include breakpoint-down(small){
+            @include createFlex(row,space-between,center,wrap);
+        }
     }
     
     &__digital-subheader{
@@ -21,13 +30,23 @@
     }
     &__digital-sliders{
         @include createFlex(row,center,center,null);
+        @include breakpoint-down(small){
+            @include createFlex(row,center,center,wrap);
+
+        }
         .pricing__digital-slider{
             margin:0px 20px;
             width:25%;
+            @include breakpoint-down(small){
+                width:100%;
+            }
         }
     }
     &__digital-items{
         @include createFlex(row,space-between,center,null);
+        @include breakpoint-down(medium-sm){
+            @include createFlex(row,space-between,center,wrap);
+        }
     }
     &__custom-beats{
         a{
@@ -39,20 +58,35 @@
     }
     &__custom-beats-large-item-group{
         @include createFlex(row,space-between,center,null);
+        @include breakpoint-down(medium-sm){
+            @include createFlex(row,space-between,center,wrap);
+        }
 
     }
     &__custom-beats-medium-group{
         .pricing__custom-beat-item{
             min-width:calc(100% / 2 - 39px);
+            @include breakpoint-down(small){
+                width: 100%;
+            }
+        }
+        @include breakpoint-down(small){
+            @include createFlex(row,space-between,center,wrap);
         }
         @include createFlex(row,space-between,center,null);
     }
     &__projects-music-items{
         @include createFlex(row,space-between,center,null);
         @import '../components/pricing-page/projects/music-item.style';
+        @include breakpoint-down(small){
+            @include createFlex(row,space-between,center,wrap);
+        }
     }
     &__projects-youtube-items{
         @include createFlex(row,space-between,center,null);
+        @include breakpoint-down(small){
+            @include createFlex(row,space-between,center,wrap);
+        }
     }
 
 }

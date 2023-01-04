@@ -1,0 +1,18 @@
+.rap-challenge__profiles{
+    h2,p{
+        text-align:center;
+    }
+    h2{
+        font-size:pxToRem(40);
+    }
+    p{
+        width:65%;
+        margin:0px auto;
+    }
+    &-items{
+        @include createFlex(row,center,center,null);
+        @include breakpoint-down(small){
+            @include createFlex(row,center,center,wrap);
+        }
+    }
+}

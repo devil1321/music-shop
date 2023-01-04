@@ -8,6 +8,9 @@
     &-item{
         margin:10px;
         width: calc(100% / 4 - 20px);
+        @include breakpoint-down(small){
+            width: 100%;
+        }
     }
  
 }

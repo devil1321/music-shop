@@ -1,14 +1,35 @@
 .pricing__client-item{
     margin:50px 0px;
     @include createFlex(row,flex-start,center,null);
+    @include breakpoint-down(small){
+        @include createFlex(row,flex-start,center,wrap);
+    }
     &-right{
         margin-left: 38%;
+        @include breakpoint-down(medium-sm){
+            margin-left: 14%;
+        }
+        @include breakpoint-down(small){
+            margin-left: 0px;
+        }
         .pricing__client-item-img{
             order: 2;
             margin-left: 20px;
+            @include breakpoint-down(small){
+                order:1;
+                margin-left: 0px;
+                margin:0px auto;
+            }
         }
         .pricing__client-item-content{
             text-align: right;
+            @include breakpoint-down(small){
+                text-align: left;
+            }
+            @include breakpoint-down(small){
+                order:2;
+                margin-left: 0px;
+            }
         }
     }
     &-img{
@@ -17,9 +38,16 @@
         margin-right: 20px;
         border-radius: 100%;
         overflow: hidden;
+        @include breakpoint-down(small){
+            margin:0px auto;
+        }
     }
     &-content{
         min-width: 500px;
         width: 60%;
+        @include breakpoint-down(small){
+            width: 100%;
+            min-width: 100px
+        }
     }
 }

@@ -4,9 +4,28 @@
         padding: 0px 50px;
         width: 100%;
         @include createFlex(row,space-between,center,null);
+        @include breakpoint-down(medium-sm){
+            width: 95%;
+            padding: 0px 40px 0px 20px;
+        }
+        @include breakpoint-down(small){
+            margin:20px 0px;
+            @include createFlex(row,space-between,center,wrap);
+        }
+    }
+    &-logo{
+        @include breakpoint-down(small){
+            display: none;
+        }
     }
     &-form{
         width: 70%;
+        @include breakpoint-down(medium-sm){
+            width: 65%;
+        }
+        @include breakpoint-down(small){
+            width:100%;
+        }
     }
     &-form-field{
        padding:10px;
@@ -19,6 +38,9 @@
         background-color: transparent;
         outline: none;
         border:0px;
+        @include breakpoint-down(medium-sm){
+            width: 90%;
+        }
         &:active,&:focus{
             outline: none;
             border:0px;
@@ -28,6 +50,16 @@
     &-group{
         width:15%;
         @include createFlex(row,space-between,center,null);
+        @include breakpoint-down(small){
+            width:100%;
+            margin-top: 20px;
+            @include createFlex(row,space-between,center,wrap);
+            div{
+                margin-top: 10px;
+                width: 100%;
+                margin-left:20px;
+            }
+        }
         i{
             color:white;
             margin-right: 5px;
@@ -44,9 +76,11 @@
             i,p{
                 pointer-events: none;
             }
+           
         }
     }
     &-active{
         border:1px solid $neon-green !important;
     }
+  
 }

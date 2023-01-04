@@ -1,6 +1,12 @@
 .pricing__info-introduce{
     width:60%;
     @include createFlex(row,space-between,center,null);
+    @include breakpoint-down(medium-sm){
+        width: 100%;
+    }
+    @include breakpoint-down(small){
+        @include createFlex(row,space-between,center,wrap);
+    }
     padding-right: 20px;
     &-img{
         border-radius: 100%;
@@ -16,6 +22,9 @@
     &-links{
         @include createFlex(row,space-between,center,null);
         width:38%;
+        @include breakpoint-down(medium){
+            width:50%;
+        }
         a{
             &:first-of-type{
                 font-weight: bold;

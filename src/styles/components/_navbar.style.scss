@@ -1,6 +1,9 @@
 .navbar {
     padding: $sp-lg 0px;
     @include createFlex(row, center, center, null);
+    @include breakpoint-down(small){
+        @include createFlex(row, center, center, wrap);
+    }
     a {
         position: relative;
         top: 0px;
@@ -10,6 +13,12 @@
         font-weight: $w-thin;
         font-size: pxToRem(25);
         border: 0px;
+        @include breakpoint-down(medium-sm){
+            font-size: pxToRem(18);
+        }
+        @include breakpoint-down(small){
+            margin: 10px $sp-sm-md;
+        }
         &:before {
             content: '';
             position: absolute;
