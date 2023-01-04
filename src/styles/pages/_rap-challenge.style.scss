@@ -14,6 +14,9 @@
     padding:50px 0px;
     background-color: $light-black;
     @include createFlex(row,center,center,null);
+    @include breakpoint-down(small){
+      @include createFlex(row,center,center,wrap);  
+    }
   }
   &__profiles-wrapper{
     margin:100px 0px;
