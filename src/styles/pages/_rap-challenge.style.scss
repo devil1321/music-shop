@@ -16,6 +16,8 @@
     @include createFlex(row,center,center,null);
     @include breakpoint-down(small){
       @include createFlex(row,center,center,wrap);  
+      width: 100%; 
+      left:0px;
     }
   }
   &__profiles-wrapper{
