@@ -18,7 +18,7 @@ const List:React.FC<{image:IGatsbyImageData}> = ({image}) => {
   const [activeIndex,setActiveIndex] = useState<any>('init')
 
   const handleMakeUnactive = () =>{
-    for(let i = 0; i < 10; i++){
+    for(let i = 0; i < 3; i++){
       arr[i] = false
     }
     setActive(arr)

@@ -1,13 +1,14 @@
 .pricing__info-introduce{
     width:60%;
+    padding-right: 20px;
     @include createFlex(row,space-between,center,null);
     @include breakpoint-down(medium-sm){
         width: 100%;
     }
     @include breakpoint-down(small){
+        padding-right: 0px;
         @include createFlex(row,space-between,center,wrap);
     }
-    padding-right: 20px;
     &-img{
         border-radius: 100%;
         overflow: hidden;

@@ -127,9 +127,7 @@ const handlePlay = ()=>{
       handleAnimateBars()
       handleAnimateCircle()
       setIsPlaySet(true)
-      if(tempSrc !== src){
-        setTempSrc(src)
-      }
+    
     }else{
       playerActions.handleSrc(media)
       setIsLoad(true)

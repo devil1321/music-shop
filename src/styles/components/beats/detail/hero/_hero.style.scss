@@ -4,6 +4,9 @@
         position: relative;
         top:0px;
         left:0px;
+        @include breakpoint-down(small){
+            left:5px;
+        }
     }
     &-hero-btn-group{
         position: absolute;

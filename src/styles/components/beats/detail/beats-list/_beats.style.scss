@@ -2,5 +2,7 @@
     @import './beat-item.style';
     @include breakpoint-down(small){
         margin-top:100px;
+        overflow-x: scroll;
+        width: 100vw;
     }
 }
