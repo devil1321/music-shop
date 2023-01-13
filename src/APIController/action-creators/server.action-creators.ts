@@ -17,7 +17,7 @@ export const handleLogin = (e:any) => (dispatch:Dispatch<any>) =>{
     const formData = new FormData(e.target)
     axios({
         method: "POST",
-        url: "http://127.0.0.1:7000/api/login/",
+        url: "http://devil1321.pythonanywhere.com/api/login/",
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       })
@@ -63,7 +63,7 @@ export const handleSignUp = (e:any) => (dispatch:Dispatch<any>) =>{
     const formData = new FormData(e.target)
     axios({
         method: "post",
-        url: "http://127.0.0.1:7000/register/",
+        url: "http://devil1321.pythonanywhere.com/register/",
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       })
@@ -100,7 +100,7 @@ export const handleInit = () => (dispatch:Dispatch<any>) =>{
 
         axios({
             method: "GET",
-        url: "http://127.0.0.1:7000/init/",
+        url: "http://devil1321.pythonanywhere.com/init/",
         headers:{
             'Authorization':`Bearer ${token}`
         }
@@ -139,7 +139,7 @@ export const handleInitPerson = () => (dispatch:Dispatch<any>) =>{
     const token = getToken()
     axios({
         method: "GET",
-        url: "http://127.0.0.1:7000/init-person/",
+        url: "http://devil1321.pythonanywhere.com/init-person/",
         headers:{
             'Authorization':`Bearer ${token}`
         }
@@ -174,7 +174,7 @@ export const handleInitPerson = () => (dispatch:Dispatch<any>) =>{
 
 export const handleFetchTracks = () => (dispatch:Dispatch<any>) =>{
     const token = getToken()
-    axios.get('http://127.0.0.1:7000/files/',{
+    axios.get('http://devil1321.pythonanywhere.com/files/',{
         headers:{
             'Authorization':`Bearer ${token}`
         }
@@ -189,7 +189,7 @@ export const handleFetchTracks = () => (dispatch:Dispatch<any>) =>{
 }
 
 export const handleFetchTrack = (name:string) => (dispatch:Dispatch<any>) =>{
-    axios.post('http://127.0.0.1:7000/file/',{
+    axios.post('http://devil1321.pythonanywhere.com/file/',{
         params:{
             name:name
         }
@@ -214,7 +214,7 @@ export const handleUpdateOrAddTrack = (formData:any,url:string,id:number) => (di
     form.append('genres',formData.genres)
     form.append('tags',formData.tags)
 
-    axios.post(`http://127.0.0.1:7000${url}`,form,{
+    axios.post(`http://devil1321.pythonanywhere.com${url}`,form,{
         headers:{
             'Authorization':`Bearer ${token}`,
             "Content-Type": "multipart/form-data",
@@ -230,7 +230,7 @@ export const handleUpdateOrAddTrack = (formData:any,url:string,id:number) => (di
 }
 export const handleRemoveTrack = (id:number) => (dispatch:Dispatch<any>) =>{
     const token = getToken()
-    axios.post(`http://127.0.0.1:7000/delete-track/` + id,{
+    axios.post(`http://devil1321.pythonanywhere.com/delete-track/` + id,{
         headers:{
             'Authorization':`Bearer ${token}`
         }
