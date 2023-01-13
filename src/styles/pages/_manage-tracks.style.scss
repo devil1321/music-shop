@@ -1,0 +1,79 @@
+.manage-tracks{
+    width: 100%;
+    &__header{
+        margin:0px;
+        @include createFlex(row,space-around,center,null);
+        p{
+            font-weight: bold;
+            width: 33%;
+            border:1px solid $light-black;
+            text-align: center;
+            padding:10px;
+        }
+    }
+    &__content{
+        @include createFlex(row,space-around,center,wrap);
+    }
+    &__item{
+        cursor: pointer;
+        width: 100%;
+        padding:10px;
+        margin:5px 0px;
+        border:1px solid $light-black;
+        text-align: center;
+        @include createFlex(row,space-around,center,wrap);
+        &:hover{
+            border:1px solid $neon-green;
+        }
+        p{
+            width: 25%;
+
+            text-align: center;
+        }
+    }
+    &__actions{
+        width: 25%;
+        @include createFlex(row,center,center,null);
+        a{
+            &:first-of-type{
+                color:$light-black;
+                &:hover{
+                    color:red;
+                }
+            }
+            &:last-of-type{
+                color:$light-black;
+                &:hover{
+                    color:$neon-green;
+                }
+            }
+        }
+        i{
+            pointer-events: none;
+            margin: 0px 20px;
+        }
+    }
+    &__divider{
+        height: 50px;
+        border-left: 1px solid $light-black;
+    }
+    &__btn-add{
+        cursor: pointer;
+        margin:0px;
+        width: 100%;
+        padding:10px 20px;
+        background-color: $neon-green;
+        border-radius: 5px;
+        border: 0px;
+        outline: none;
+        font-weight: bold;
+        color:white;
+        &:hover{
+            background-color: $neon-green-light;
+        }
+        &:active,&:focus{
+            border: 0px;
+            outline: none;
+            }
+        }
+}

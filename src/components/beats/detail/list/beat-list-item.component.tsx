@@ -1,12 +1,14 @@
-import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image'
-import React, { useState,useEffect, MutableRefObject, useRef, SetStateAction, Dispatch } from 'react'
+import { GatsbyImage, IGatsbyImageData,StaticImage } from 'gatsby-plugin-image'
+import React, { useState,useEffect } from 'react'
 import { useDispatch,useSelector } from 'react-redux'
 import * as PlayerActions from '../../../../APIController/action-creators/player.action-creators'
 import { bindActionCreators } from 'redux'  
+import { State } from '../../../../APIController/reducers/root.reducer'
+
 
 interface ItemProps{
-    image:IGatsbyImageData;
-    src:string;
+    image:string;
+    source:string;
     title:string;
     price:number;
     tags:Array<string>;
@@ -16,23 +18,36 @@ interface ItemProps{
     handleMakeActive:(index:number) => void
 }
 
-const Item:React.FC<ItemProps> = ({isActive,handleMakeActive,index,image,src,title,price,genres,tags}) => {
+const Item:React.FC<ItemProps> = ({isActive,handleMakeActive,index,image,source,title,price,genres,tags}) => {
 
     const [bpm,setBpm] = useState<number>(0)
     const [isLoad,setIsLoad] = useState<boolean>(false)
-    const [isSrcSet,setIsSrcSet] = useState<boolean>(false)
     const [audio,setAudio] = useState<any>()
-    const [duration,setDuration] = useState<number>(0)
+    const [duration,setDuration] = useState<number>()
 
     const dispatch = useDispatch()
     const playerActions = bindActionCreators(PlayerActions,dispatch)
-  
-    const createBpm = async (src:string) =>{
-        const res = await fetch(src)
-        const arrayBuffer = await res.arrayBuffer()
+    const { tracks } = useSelector((state:State) => state.server)
+    const { src } = useSelector((state:State) => state.player)
+   
+
+    function _base64ToArrayBuffer(base64:any) {
+      var binary_string = window.atob(base64.slice(23,base64.length));
+      var len = binary_string.length;
+      var bytes = new Uint8Array(len);
+      for (var i = 0; i < len; i++) {
+          bytes[i] = binary_string.charCodeAt(i);
+      }
+      return bytes.buffer;
+  }
+
+    const createBpm = async (source:string) =>{
+      if(source?.length > 0){
+        const arrayBuffer = _base64ToArrayBuffer(source)
         const audioCtx = new AudioContext()
         const songBuffer = await audioCtx.decodeAudioData(arrayBuffer) as AudioBuffer
         prepare(songBuffer)
+      }
     }
 
     function prepare(buffer:AudioBuffer) {
@@ -157,26 +172,21 @@ const Item:React.FC<ItemProps> = ({isActive,handleMakeActive,index,image,src,tit
         return max;
       }
 
-     
-
 useEffect(()=>{
-    createBpm(src)
-    if(!isLoad){
-      if(typeof window !== 'undefined'){
+  if(!isLoad){
+    if(typeof window !== 'undefined'){
         setAudio(new Audio())
         setIsLoad(true)
       }
     }
-      if(audio){
-      audio.src = src  
-      setIsSrcSet(true)
+    if(audio){
+      audio.src = source
+      audio.addEventListener('loadedmetadata',()=>{
+        setDuration(Number((audio.duration / 100).toFixed(2)))
+      })
     }
-    if(isSrcSet){
-      audio.addEventListener('loadedmetadata', function() {
-        setDuration(Number((audio?.duration / 100).toFixed(2)))
-    })
-  }
-},[src,audio,isLoad,isSrcSet])
+    createBpm(source)
+},[isLoad,tracks,src])
 
   return (
     <div className='beats__beat-item'
@@ -184,7 +194,7 @@ useEffect(()=>{
           playerActions.handleCurrent({title,genres,tags})
         }}>
         <div className="beats__beat-item-image">
-            {image && <GatsbyImage image={image} alt="beat-img" />}
+            {image && <img src={image} alt="beat-img" />}
         </div>
         <h3>{title}</h3>
         <p className='beats__beat-item-time'>{duration}s</p>
@@ -192,16 +202,17 @@ useEffect(()=>{
         <div className="beats__beat-item-tags">
             {tags.map(tag => <p key={tag}>{tag}</p>)}
         </div>
+        <div className="beats__beat-item-controls">
+
         <div className="beats__beat-item-play">
           {isActive
              ? <i onClick={(e)=>{
                 playerActions.handleIsPlay(false)
-                playerActions.handleSrc(src)
                 handleMakeActive(index)
               }} className="fa fa-pause fa-2x"></i>
              : <i onClick={(e)=>{
                 playerActions.handleIsPlay(true)
-                playerActions.handleSrc(src)
+                playerActions.handleSrc(source)
                 handleMakeActive(index)
               }} className="fa fa-play fa-2x"></i>
             }
@@ -218,6 +229,7 @@ useEffect(()=>{
               </div>
             <button><i className="fa fa-shopping-cart"></i> Cart</button>
         </div>
+      </div>
     </div>
   )
 }

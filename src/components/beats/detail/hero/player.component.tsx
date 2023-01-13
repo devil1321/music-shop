@@ -1,21 +1,25 @@
 import React,{ useState, useEffect, useRef, MutableRefObject, useMemo, useCallback } from 'react'
-import media from "../../../../media/favst gibbs - ztb.mp3"
-import media2 from "../../../../media/Gibbs x Avi - 30 stopni.mp3"
 import { globalHistory } from '@reach/router'
 import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image'
 import { useSelector, useDispatch } from 'react-redux'
 import * as PlayerActions from '../../../../APIController/action-creators/player.action-creators'
+import * as ServerActions from '../../../../APIController/action-creators/server.action-creators'
 import { bindActionCreators } from 'redux'  
 import { State } from '../../../../APIController/reducers/root.reducer'
-
+import axios from 'axios'
+axios.defaults.xsrfHeaderName = "X-CSRFToken"
+axios.defaults.xsrfCookieName = 'csrftoken'
 const Player:React.FC<{image:IGatsbyImageData}> = ({image}) => {
 
   const { isPlay, src, current:{ title, genres , tags} } = useSelector((state:State) => state.player)
+  const { user, tracks } = useSelector((state:State) => state.server)
   const dispatch = useDispatch()
   const playerActions = bindActionCreators(PlayerActions,dispatch)
+  const serverActions = bindActionCreators(ServerActions,dispatch)
 
   const [isLoad,setIsLoad] = useState<boolean>(false)
   const [isPlaySet,setIsPlaySet] = useState<boolean>(false)
+  const [isFetched,setIsFetched] = useState<boolean>(false)
   const [beat,setBeat] = useState<Uint8Array>(new Uint8Array())
   const [tempSrc,setTempSrc] = useState<string>('')
 
@@ -31,13 +35,16 @@ const Player:React.FC<{image:IGatsbyImageData}> = ({image}) => {
   const connectAudio = () =>{
     if(typeof window !== 'undefined'){
       if(tempSrc !== src){
-        if(audioRef?.current){
+        setTempSrc(src)
+        if(audioRef?.current && !audioRef.current.paused){
           audioRef.current.pause()
           audioRef.current.remove()
         }
         // fix
         const audioEl = new Audio()
-        audioEl.src = src
+        if(src.length > 0){
+          audioEl.src = src
+        }
         audioEl.preload = 'metadata'
         audioRef.current = audioEl
         const audioCtx = new AudioContext()
@@ -61,16 +68,16 @@ const Player:React.FC<{image:IGatsbyImageData}> = ({image}) => {
 
 
 const handlePlay = ()=>{
-  if(isPlay === true && audioRef.current.paused){
-    audioCtx.resume()
-    const play = audioRef.current.play()
-  }else if(isPlay === false){
-    audioRef.current.pause()
+  if(isPlay === true && audioRef.current?.paused){
+    audioCtx?.resume()
+    const play = audioRef.current?.play()
+  }else if(isPlay === false && !audioRef.current?.paused){
+    audioRef.current?.pause()
   }
 }
 
   const handleAnimateCircle = () =>{
-    const angle = (audioRef.current.currentTime / audioRef.current.duration / 100) * 360
+    const angle = (audioRef?.current?.currentTime / audioRef?.current?.duration / 100) * 360
     const ctx = canvasRefCircle.current?.getContext('2d')!
     if(ctx){
       ctx.clearRect(0,0,canvasRefCircle.current.width,canvasRefCircle.current.height)
@@ -116,28 +123,40 @@ const handlePlay = ()=>{
       }
    }
 
+
+
+
+
   useEffect(()=>{
     audioCtx?.resume()
     if(isLoad){
-      connectAudio()
-      cancelAllAnimationFrames()
+      if(isFetched && !isPlaySet){
+        playerActions.handleSrc(tracks[0]?.base64)
+        playerActions.handleCurrent({title:tracks[0].title,genres:tracks[0].genres.split(','),tags:tracks[0].tags.split(',')})
+        setIsPlaySet(true)
+      }
+      if(isPlay){  
+        connectAudio()
+        cancelAllAnimationFrames()
+      }
       if(isPlaySet){
         handlePlay()
       }
       handleAnimateBars()
       handleAnimateCircle()
-      setIsPlaySet(true)
-    
     }else{
-      playerActions.handleSrc(media)
       setIsLoad(true)
+      serverActions.handleFetchTracks()
+      setIsFetched(true)
     }
     return globalHistory.listen(({ action }) => {
-      if (action === 'PUSH') {
-        audioRef.current.pause()
+      if(user){ 
+        if (action === 'PUSH') {
+          audioRef.current?.pause()
+        }
       }
     })
-  },[isLoad,src,isPlay])
+  },[isPlay,tracks,src,tempSrc])
 
   return (
     <div className='beats__player'>
@@ -166,7 +185,7 @@ const handlePlay = ()=>{
             {genres.map(g => <div key={g} className="beats__player-genre beats__player-content-item">{g}</div>)}
           </div>
           <div className="beats__player-tags">
-            {tags.map(t => <div key={t} className="beats__player-tag beats__player-content-item">#{t}</div>)}
+            {tags.map(t => <div key={t} className="beats__player-tag beats__player-content-item">{t}</div>)}
           </div>
         </div>
       </div>

@@ -1,0 +1,7 @@
+.not-allow{
+    height: 100vh;
+    @include createFlex(column,center,center,null);
+    h1{
+        width: 100%;
+    }
+}

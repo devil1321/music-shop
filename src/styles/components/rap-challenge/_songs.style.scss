@@ -1,44 +1,107 @@
 .rap-challenge__songs{
     &-header{
+        position: relative;
+        top:0px;
+        left:0px;
         @include createFlex(row,flex-start,center,null);
         @include breakpoint-down(small){
             @include createFlex(row,space-between,center,null);
         }
-        p{
-            margin-right: 235px;
+       
+        p:nth-of-type(4){
+            position: absolute;
+            top:10px;
+            left:22%;
+        }
+        p:nth-of-type(1){
+            position: relative;
+            top:10px;
+        }
+        p:nth-of-type(2){
+            position: absolute;
+            top:10px;
+            left:52%;
             @include breakpoint-down(medium-sm){
-                margin-right: 164px;
-            }
-            @include breakpoint-down(small){
-                margin-right: 0px;
+                left:62%;
             }
         }
         p:nth-of-type(3){
-            margin-right: 125px;
+            position: absolute;
+            top:10px;
+            left:72%;
             @include breakpoint-down(medium-sm){
-                margin-right: 50px;
+                left:82%
             }
+        }
+        p{
             @include breakpoint-down(small){
-                margin-right: 0px;
+                position: relative;
+                left:0px;
             }
         }
     }
+    &-tracks{
+        width: 100%;
+        @include breakpoint-down(small){
+            width:75%;
+        }
+    }
     &-track{
-        padding:20px 0px;
+        position: relative;
+        top:0px;
+        left:0px;
+        padding:20px;
         border-bottom: 1px solid $light-black;
         border-top: 1px solid $light-black;
         width: 100%;
-        @include createFlex(row,flex-start,center,wrap);
+        @include createFlex(row,space-between,center,wrap);
         @include breakpoint-down(small){
             @include createFlex(row,space-between,center,wrap)
         }
+        audio{
+            position: absolute;
+            top:10px;
+            left:20%;
+        }
+        
+        p:nth-of-type(2){
+            position: absolute;
+            top:10px;
+            left:50%;
+            @include breakpoint-down(medium-sm){
+                left:80%
+            }
+            @include breakpoint-down(small){
+                position: relative;
+                left:0px;
+                width: 50%;
+            }
+        }
+        p:nth-of-type(3){
+            position: absolute;
+            top:10px;
+            left:70%;
+            @include breakpoint-down(medium-sm){
+                left:60%;
+            }
+            @include breakpoint-down(small){
+                position: relative;
+                left:0px;
+                width: 50%;
+                text-align: right;
+            }
+        }
+      
         p,audio{
-            margin-right: 120px;
             @include breakpoint-down(medium-sm){
                 margin-right: 44px;
             }
             @include breakpoint-down(small){
                 margin-right: 0px;
+                width: 100%;
+                p{
+                    min-width: 40px;
+                }
             }
         }
         audio{

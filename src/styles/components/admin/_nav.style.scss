@@ -1,0 +1,20 @@
+.nav-admin{
+    box-sizing: border-box;
+    padding: 20px 50px 0px;
+    height:70xp;
+    @include createFlex(row,space-between,center,null);
+    &__logo{
+        font-size: pxToRem(40);
+        font-weight: bold;
+        color:$neon-green;
+    }
+    &__link{
+        text-decoration: none;
+        font-weight: bold;
+        color:$neon-green;
+        margin:0px 10px;
+        &:hover{
+            color:$light-black;
+        }
+    }
+}

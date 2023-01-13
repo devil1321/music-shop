@@ -1,10 +1,14 @@
-import React from 'react'
+import React,{useEffect} from 'react'
+import { navigate } from 'gatsby'
 import Nav from './nav.component'
 import Navbar from './navbar.component'
 import '../../styles/styles.scss'
 import '../../font-awesome/css/all.css'
 import Footer from './footer/components'
-
+import { useDispatch,useSelector } from 'react-redux'
+import * as ServerActions from '../../APIController/action-creators/server.action-creators'
+import { bindActionCreators } from 'redux'  
+import{ State } from '../../APIController/reducers/root.reducer'
 interface MetaTag{
     name?:string;
     property?:string;
@@ -21,6 +25,21 @@ interface LayoutProps {
 
 
 const Layout:React.FC<LayoutProps> = ({children,title,className,meta}) => {
+
+  const dispatch = useDispatch()
+  const serverActions = bindActionCreators(ServerActions,dispatch)
+  const { user } = useSelector((state:State) => state.server)
+
+  useEffect(()=>{
+    if(localStorage.getItem('access_token') && !user){
+      serverActions.handleInit()
+    }else{
+      if(!user){
+        navigate('/login')
+      }
+    }
+    
+  },[user])
   return (
       <div className='container'>
         {/* <Head>

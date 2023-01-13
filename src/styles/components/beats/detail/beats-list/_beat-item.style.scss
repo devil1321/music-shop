@@ -7,7 +7,10 @@
     @include createFlex(row,flex-start,center,null);
     &-image{
         width: 70px;
-        height: 70px;;
+        height: 70px;
+        img{
+            width: 100%;;
+        }
     }
     h3,p{
         font-weight: bold;
@@ -23,7 +26,7 @@
     }
     &-play{
         position: relative;
-        left:100px;
+        left:-20px;
         top:0px;
         @include breakpoint-down(medium-sm){
             left:0px;
@@ -38,7 +41,7 @@
             cursor: pointer;
             padding: 20px 20px;
             height: 20px;
-            border:1px solid $neon-green;
+            border:1px solid $neon-green !important;
             color:$neon-green;
             background-color: transparent;
             @include createFlex(row,space-between,center,null);

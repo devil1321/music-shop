@@ -53,6 +53,9 @@
 @import './components/rap-challenge/profile-item.style';
 @import './components/rap-challenge/profiles.style';
 @import './components/rap-challenge/songs.style';
+@import './components/cred-form.style';
+@import './components/admin/nav.style';
+@import './components/admin/track-form.style';
 
 /*******************PAGES*************************/
 
@@ -63,3 +66,8 @@
 @import './pages/about.style';
 @import './pages/rap-challenge.style';
 @import './pages/my-account.style';
+@import './pages/manage-tracks.style';
+@import './pages/track-list.style';
+@import './pages/not-allow.style';
+@import './pages/404.style';
+@import './pages/500.style';

@@ -12,7 +12,11 @@ h3 {
     font-family: $f-workspace;
     font-weight: $w-thin;
 }
-
+button{
+    outline: none !important;
+    border: 0px !important;
+    color:white;
+}
 body {
     font-family: $f-muli;
     color: $white;

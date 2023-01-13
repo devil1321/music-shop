@@ -1,5 +1,8 @@
 import React,{useState,useEffect} from 'react'
-import src from '../../media/favst gibbs - ztb.mp3'
+import { useSelector, useDispatch } from 'react-redux'
+import * as ServerActions from '../../APIController/action-creators/server.action-creators'
+import { bindActionCreators } from 'redux'  
+import { State } from '../../APIController/reducers/root.reducer'
 
 interface Song{
     misto:string;
@@ -10,23 +13,13 @@ interface Song{
 
 const Songs = () => {
 
-  const [songs,setSongs] = useState<Song[]>([])
+  const { tracks } = useSelector((state:State) => state.server)
+  const dispatch = useDispatch()
+  const serverActions = bindActionCreators(ServerActions,dispatch)
 
-  const makeSongs = () =>{
-    let tempSongs:Song[] = []
-    for(let i = 0; i < 30; i++){
-        tempSongs.push({
-            misto:`#${i}`,
-            audio:src,
-            umelec:'McArty',
-            song:'Rozmluva',
-        })
-    }
-    setSongs(tempSongs)
-  }
-
+  
   useEffect(()=>{
-    makeSongs()
+    serverActions.handleFetchTracks()
   },[])
 
   return (
@@ -38,13 +31,13 @@ const Songs = () => {
         <p>Song</p>
       </div>
       <div className="rap-challenge__songs-tracks">
-        {songs.map(s => {
+        {tracks.map((t:any,i:number) => {
             return(
                 <div className="rap-challenge__songs-track">
-                    <p>{s.misto}</p>
-                    <audio controls src={s.audio}></audio>
-                    <p>{s.umelec}</p>
-                    <p>{s.song}</p>
+                    <p>#{i}</p>
+                    <audio controls src={t.base64}></audio>
+                    <p>{t.author}</p>
+                    <p>{t.title}</p>
                 </div>
             )
         })}

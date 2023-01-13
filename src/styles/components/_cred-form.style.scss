@@ -1,0 +1,56 @@
+.cred{
+    @include createFlex(column,center,center,null);
+    height: 100vh;
+    &__inner-form{
+        height: 300px;
+        @include createFlex(column,center,center,null);
+        width: 30%;
+        img{
+            display: block;
+            margin: 40px auto;
+            width: 50%;
+        }
+    }
+    &__field{
+        margin: 10px;
+        background-color: $light-black;
+        border-radius: 5px;
+        padding: 5px;
+        width: 100%;
+        input{
+            color:white;
+            background-color: transparent;
+            padding: 5px;
+            outline: none;
+            border:0px;
+            &:focus,&:active{
+                outline: none;
+                border:0px;
+            }
+        }
+    }
+    a{
+        text-decoration: none;
+        color:$neon-green;
+        font-weight: bold;
+    }
+    button{
+        cursor: pointer;
+        display: block;
+        margin: 10px;
+        padding: 10px 20px;
+        width: 102%;
+        background-color: $neon-green;
+        border-radius: 5px;
+        font-weight: bold;
+        outline: none;
+        border:0px;
+        &:focus,&:active{
+            outline: none;
+            border:0px;
+        }
+        &:hover{
+            background-color: $neon-green-light;
+        }
+    }
+}

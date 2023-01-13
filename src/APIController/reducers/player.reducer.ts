@@ -13,9 +13,9 @@ const initData:InitDataProps = {
     isPlay:false,
     src:'',
     current:{
-        title:'SOMETIMES [Guitar Pop Beat]',
-        genres:['POP','RNB'],
-        tags:['POP','RNB','RAP']
+        title:'',
+        genres:[],
+        tags:[]
     },
     activeIndex:0
 }

@@ -4,3 +4,72 @@
     padding: 0px 20px;
 }
 }
+.profile{
+  @include createFlex(column,center,center,null);
+  height: 60vh;
+  h1{
+      width: 100%;
+  }
+  &__form{
+      width: 80%;
+  }
+  &__field{
+      cursor: pointer;
+      margin: 10px;
+      background-color: $light-black;
+      border-radius: 5px;
+      padding: 5px;
+      width: 100%;
+      border: 1px solid transparent;
+      &:hover{
+          border: 1px solid $neon-green;
+      }
+      input{
+          width: 90%;
+          color:white;
+          background-color: transparent;
+          padding: 5px;
+          outline: none;
+          border:0px;
+          &:focus,&:active{
+              outline: none;
+              border:0px;
+          }
+      }
+  }
+  &__checkboxes{
+      margin:20px 10px;
+      width: 30%;
+      label{
+        margin-right: 10px;
+      }
+      @include createFlex(row,space-between,center,null);
+  }
+  a{
+      text-decoration: none;
+      color:$black;
+      font-weight: bold;
+      text-align: center;
+      width:97.5% !important;
+  }
+  button,a{
+      cursor: pointer;
+      display: block;
+      margin: 10px;
+      padding: 10px 20px;
+      width: 101%;
+      color:white;
+      background-color: $neon-green;
+      border-radius: 5px;
+      font-weight: bold;
+      outline: none;
+      border:0px;
+      &:focus,&:active{
+          outline: none;
+          border:0px;
+      }
+      &:hover{
+          background-color: $neon-green-light;
+      }
+  }
+}

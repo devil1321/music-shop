@@ -1,38 +1,41 @@
 import React, { useEffect, useState } from 'react'
 import Item from './beat-list-item.component';
-import src from "../../../../media/Gibbs x Avi - 30 stopni.mp3"
 import { IGatsbyImageData } from 'gatsby-plugin-image';
 import { useSelector, useDispatch } from 'react-redux'
-import * as PlayerActions from '../../../../APIController/action-creators/player.action-creators'
+import * as ServerActions from '../../../../APIController/action-creators/server.action-creators'
 import { bindActionCreators } from 'redux'  
 import { State } from '../../../../APIController/reducers/root.reducer'
 
 
 const List:React.FC<{image:IGatsbyImageData}> = ({image}) => {
-  const arr:boolean[] = []
+  const arr:any[] = []
 
   const { isPlay } = useSelector((state:State) => state.player)
+  const { tracks } = useSelector((state:State) => state.server)
 
-  const [active,setActive] = useState<boolean[]>([true])
+  const [activeTracks,setActiveTracks] = useState<any[]>([])
   const [isLoad,setIsLoad] = useState<boolean>(false)
   const [activeIndex,setActiveIndex] = useState<any>('init')
 
   const handleMakeUnactive = () =>{
-    for(let i = 0; i < 3; i++){
-      arr[i] = false
+    for(let i = 0; i < tracks.length; i++){
+      arr[i] = {
+        ...tracks[i],
+        active:false,
+      }
+      setActiveTracks(arr)
     }
-    setActive(arr)
   }
 
   const handleMakeActive = (index:any) =>{
     if(index === 'init') return
-    const tempActive:boolean[] = [...active]
+    const tempActive:any[] = [...activeTracks]
     for(let i = 0; i < tempActive.length; i++){
-      tempActive[i] = false
+      tempActive[i].active = false
     }
-    tempActive[index] = true
+    tempActive[index].active = true
     setActiveIndex(index)
-    setActive(tempActive)
+    setActiveTracks(tempActive)
   }
 
   useEffect(() => {
@@ -45,12 +48,22 @@ const List:React.FC<{image:IGatsbyImageData}> = ({image}) => {
     }else if(isLoad && isPlay){
       handleMakeActive(activeIndex)
     }
-  }, [isPlay,activeIndex])
+  }, [isPlay,activeIndex,tracks])
   
 
   return (
     <div className='beats__beats-list'>
-      {active.map((a,i) => <Item isActive={a} index={i} handleMakeActive={handleMakeActive} key={i} src={src} image={image} title="SOMETIMES [Guitar Pop Beat]" price={19} genres={['HIPHOP',"RAP"]} tags={['guitar','pop','guitar beat']} />)}
+      {activeTracks.map((t:any,i:number) => <Item 
+                                              isActive={t.active} 
+                                              index={i} 
+                                              handleMakeActive={handleMakeActive} 
+                                              key={i} 
+                                              source={t.base64} 
+                                              image={t.image} 
+                                              title={t.title} 
+                                              price={19} 
+                                              genres={t.genres.split(',')} 
+                                              tags={t.tags.split(',')} />)}
     </div>
   )
 }

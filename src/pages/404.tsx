@@ -1,49 +1,43 @@
 import * as React from "react"
-import { Link, HeadFC, PageProps } from "gatsby"
+import { Link, graphql } from "gatsby"
+import { GatsbyImage, IGatsbyImageData  } from "gatsby-plugin-image"
+import { PricingPageImages } from "../interfaces"
+import { useDynamicImage } from "../hooks/useImage"
 
-const pageStyles = {
-  color: "#232129",
-  padding: "96px",
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
+
+interface Props_404 {
+  data: PricingPageImages
 }
 
-const paragraphStyles = {
-  marginBottom: 48,
-}
-const codeStyles = {
-  color: "#8A6534",
-  padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
-  borderRadius: 4,
-}
+const NotFoundPage: React.FC<Props_404> = ({data}) => {
+  const images = data.allImageSharp.edges
 
-const NotFoundPage: React.FC<PageProps> = () => {
   return (
-    <main style={pageStyles}>
-      <h1 style={headingStyles}>Page not found</h1>
-      <p style={paragraphStyles}>
-        Sorry 😔, we couldn’t find what you were looking for.
-        <br />
-        {process.env.NODE_ENV === "development" ? (
-          <>
-            <br />
-            Try creating a page in <code style={codeStyles}>src/pages/</code>.
-            <br />
-          </>
-        ) : null}
-        <br />
-        <Link to="/">Go home</Link>.
-      </p>
-    </main>
+   <div className="page-404">
+     <div className="not-found">
+     <GatsbyImage image={useDynamicImage({images,name:'404.webp'}) as IGatsbyImageData} alt="404-pic" />
+    </div>
+   </div>
   )
 }
 
+
+export const query = graphql`
+    query {
+      allImageSharp {
+        edges {
+          node {
+            id
+            gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH, formats: WEBP)
+            fluid {
+              originalName
+            }
+          }
+        }
+      }
+    }
+  `
+
+
 export default NotFoundPage
 
-export const Head: HeadFC = () => <title>Not found</title>
