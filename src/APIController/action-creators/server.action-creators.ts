@@ -243,4 +243,19 @@ export const handleRemoveTrack = (id:number) => (dispatch:Dispatch<any>) =>{
         })
         .catch((err:any) => console.log(err))
 }
+export const handleCheckout = (cart:any) => (dispatch:Dispatch<any>) =>{
+    const token = getToken()
+    axios.post(`https://devil1321.pythonanywhere.com/create-checkout-session/`,cart,{
+        headers:{
+            'Authorization':`Bearer ${token}`
+        }
+    })
+        .then(res => {
+            dispatch({
+                type:ServerTypes.HANDLE_CHECKOUT_SESSION,
+            })
+        })
+        .catch((err:any) => console.log(err))
+}
+
 

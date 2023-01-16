@@ -1,0 +1,17 @@
+.cart__empty{
+    height: 60vh;
+    @include createFlex(column,center,center,null);
+    a{
+        width: 150px;
+        display: block;
+        margin: 0px auto;
+        text-decoration: none;
+        font-weight: bold;
+        padding:10px 20px;
+        background-color: $neon-green;
+        border-radius:5px;
+        &:hover{
+            background-color: $neon-green-light;
+        }
+    }
+}

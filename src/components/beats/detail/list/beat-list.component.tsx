@@ -53,17 +53,25 @@ const List:React.FC<{image:IGatsbyImageData}> = ({image}) => {
 
   return (
     <div className='beats__beats-list'>
-      {activeTracks.map((t:any,i:number) => <Item 
+      {activeTracks.map((t:any,i:number) => {
+                                            const item = {
+                                              id:t.id,
+                                              price_id:t.price_id,
+                                              tags:t.tags.split(','),
+                                              genres:t.genres.split(','),
+                                              quantity:1,
+                                              title:t.title,
+                                              source:t.base64,
+                                              price:t.price,
+                                              image:t.image
+                                            }
+                                            return <Item 
                                               isActive={t.active} 
                                               index={i} 
                                               handleMakeActive={handleMakeActive} 
                                               key={i} 
-                                              source={t.base64} 
-                                              image={t.image} 
-                                              title={t.title} 
-                                              price={19} 
-                                              genres={t.genres.split(',')} 
-                                              tags={t.tags.split(',')} />)}
+                                              item={item} />
+                                              })}
     </div>
   )
 }

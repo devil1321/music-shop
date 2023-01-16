@@ -132,7 +132,7 @@ const handlePlay = ()=>{
     if(isLoad){
       if(isFetched && !isPlaySet){
         playerActions.handleSrc(tracks[0]?.base64)
-        playerActions.handleCurrent({title:tracks[0].title,genres:tracks[0].genres.split(','),tags:tracks[0].tags.split(',')})
+        playerActions.handleCurrent({qunatity:1,price_id:tracks[0].price_id,id:tracks[0].id,title:tracks[0].title,genres:tracks[0].genres.split(','),tags:tracks[0].tags.split(',')})
         setIsPlaySet(true)
       }
       if(isPlay){  
@@ -182,10 +182,10 @@ const handlePlay = ()=>{
           </div>
           <div className="beats__player-genres">
             <div className='beats__player-content-title'>Genre</div>
-            {genres.map(g => <div key={g} className="beats__player-genre beats__player-content-item">{g}</div>)}
+            {genres.map((g:string) => <div key={g} className="beats__player-genre beats__player-content-item">{g}</div>)}
           </div>
           <div className="beats__player-tags">
-            {tags.map(t => <div key={t} className="beats__player-tag beats__player-content-item">{t}</div>)}
+            {tags.map((t:string) => <div key={t} className="beats__player-tag beats__player-content-item">{t}</div>)}
           </div>
         </div>
       </div>

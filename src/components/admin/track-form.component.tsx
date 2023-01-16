@@ -66,6 +66,14 @@ const TrackForm:React.FC<{url:string,id:number}> = ({url,id}) => {
             <label >Tags:</label>
             <input required onChange={(e)=>handleChange(e)} type="text" name="tags"  />
         </div>
+        <div className="track-form__field">
+            <label >Price:</label>
+            <input required onChange={(e)=>handleChange(e)} type="text" name="price"  />
+        </div>
+        <div className="track-form__field">
+            <label >Price ID:</label>
+            <input required onChange={(e)=>handleChange(e)} type="text" name="price_id"  />
+        </div>
         <button type="submit">Save</button>
     </form>
 </div>

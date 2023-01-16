@@ -2,23 +2,23 @@ import { GatsbyImage, IGatsbyImageData,StaticImage } from 'gatsby-plugin-image'
 import React, { useState,useEffect } from 'react'
 import { useDispatch,useSelector } from 'react-redux'
 import * as PlayerActions from '../../../../APIController/action-creators/player.action-creators'
+import * as CartActions from '../../../../APIController/action-creators/cart.action-creators'
 import { bindActionCreators } from 'redux'  
 import { State } from '../../../../APIController/reducers/root.reducer'
+import { CartItem } from '../../../../APIController/interfaces'
+import { Link } from 'gatsby'
 
 
 interface ItemProps{
-    image:string;
-    source:string;
-    title:string;
-    price:number;
-    tags:Array<string>;
-    genres:Array<string>;
+    item:CartItem
     isActive:boolean;
     index:number;
     handleMakeActive:(index:number) => void
 }
 
-const Item:React.FC<ItemProps> = ({isActive,handleMakeActive,index,image,source,title,price,genres,tags}) => {
+const Item:React.FC<ItemProps> = ({isActive,handleMakeActive,index,item}) => {
+
+    const { quantity, image,title,price,genres,tags,source } = item
 
     const [bpm,setBpm] = useState<number>(0)
     const [isLoad,setIsLoad] = useState<boolean>(false)
@@ -27,8 +27,10 @@ const Item:React.FC<ItemProps> = ({isActive,handleMakeActive,index,image,source,
 
     const dispatch = useDispatch()
     const playerActions = bindActionCreators(PlayerActions,dispatch)
+    const cartActions = bindActionCreators(CartActions,dispatch)
     const { tracks } = useSelector((state:State) => state.server)
     const { src } = useSelector((state:State) => state.player)
+    const { cart } = useSelector((state:State) => state.cart)
    
 
     function _base64ToArrayBuffer(base64:any) {
@@ -185,7 +187,7 @@ useEffect(()=>{
         setDuration(Number((audio.duration / 100).toFixed(2)))
       })
     }
-    createBpm(source)
+    createBpm(source as string)
 },[isLoad,tracks,src])
 
   return (
@@ -200,7 +202,7 @@ useEffect(()=>{
         <p className='beats__beat-item-time'>{duration}s</p>
         <p>{bpm} BPM</p>
         <div className="beats__beat-item-tags">
-            {tags.map(tag => <p key={tag}>{tag}</p>)}
+            {tags?.map((tag:string) => <p key={tag}>{tag}</p>)}
         </div>
         <div className="beats__beat-item-controls">
 
@@ -212,7 +214,7 @@ useEffect(()=>{
               }} className="fa fa-pause fa-2x"></i>
              : <i onClick={(e)=>{
                 playerActions.handleIsPlay(true)
-                playerActions.handleSrc(source)
+                playerActions.handleSrc(source as string)
                 handleMakeActive(index)
               }} className="fa fa-play fa-2x"></i>
             }
@@ -227,7 +229,7 @@ useEffect(()=>{
               <div className='beats__beat-item-icon'>
                 <p>{price}$</p>
               </div>
-            <button><i className="fa fa-shopping-cart"></i> Cart</button>
+              <button onClick={()=>cartActions.handleAddToCart(quantity,item,cart)}><i className="fa fa-shopping-cart"></i>Add To Cart</button>
         </div>
       </div>
     </div>

@@ -1,11 +1,11 @@
 import { PlayerTypes } from "../types"
 import { Action } from "../action-types/player.action-types";
-import { Current } from "../interfaces";
+import { CartItem } from "../interfaces";
 
 interface InitDataProps{
     isPlay:boolean;
     src:string;
-    current:Current;
+    current:CartItem;
     activeIndex:number;
 }
 
@@ -13,9 +13,14 @@ const initData:InitDataProps = {
     isPlay:false,
     src:'',
     current:{
+        image:'',
+        id:0,
         title:'',
         genres:[],
-        tags:[]
+        tags:[],
+        price_id:'',
+        price:0,
+        quantity:1,
     },
     activeIndex:0
 }

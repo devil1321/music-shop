@@ -56,6 +56,11 @@
 @import './components/cred-form.style';
 @import './components/admin/nav.style';
 @import './components/admin/track-form.style';
+@import './components/cancel/cancel-item.style';
+@import './components/cart/empty.style';
+@import './components/cart/header.style';
+@import './components/cart/item.style';
+@import './components/cart/summary.style';
 
 /*******************PAGES*************************/
 
@@ -69,5 +74,8 @@
 @import './pages/manage-tracks.style';
 @import './pages/track-list.style';
 @import './pages/not-allow.style';
+@import './pages/cancel.style';
+@import './pages/success.style';
+@import './pages/cart.style';
 @import './pages/404.style';
 @import './pages/500.style';
