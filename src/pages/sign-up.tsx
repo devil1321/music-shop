@@ -19,7 +19,7 @@ const Login:React.FC<LoginProps> = ({data}) => {
 
   const image = data.allFile.nodes[0].publicURL
   
-  const { user } = useSelector((state:State) => state.server)
+  const { user} = useSelector((state:State) => state.server)
   const dispatch = useDispatch()
   const serverActions = bindActionCreators(ServerActions,dispatch)
 

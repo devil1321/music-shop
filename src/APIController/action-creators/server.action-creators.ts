@@ -60,15 +60,25 @@ export const handleLogout = () => (dispatch:Dispatch<any>) =>{
 
 export const handleSignUp = (e:any) => (dispatch:Dispatch<any>) =>{
     e.preventDefault()
-    const formData = new FormData(e.target)
-    axios({
-        method: "post",
+    const toParse = new FormData(e.target)
+    const password_1 = toParse.get('password_1')
+    const password_2 = toParse.get('password_2')
+    if(password_1 == password_2){
+        const email = toParse.get('email') as string
+        const username = toParse.get('username') as string
+        const password = toParse.get('password') as string
+        const formData = new FormData()
+        formData.append('email',email)
+        formData.append('password',password)
+        formData.append('username',username)
+        axios({
+            method: "post",
         url: "https://devil1321.pythonanywhere.com/register/",
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then(res => {
-            if(res.data.msg){
+          if(res.data.msg){
                 return res.data
             }else{
                 return JSON.parse(res.data)
@@ -91,6 +101,7 @@ export const handleSignUp = (e:any) => (dispatch:Dispatch<any>) =>{
             }
         })
         .catch((err:any) => console.log(err))
+    }
 }
 
 
