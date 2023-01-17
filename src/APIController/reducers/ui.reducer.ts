@@ -7,7 +7,7 @@ interface InitDataProps{
 }
 
 const initData:InitDataProps = {
-    isOpen:false
+    isOpen:true
 }
 
 export default (state = initData,action:Action) =>{
