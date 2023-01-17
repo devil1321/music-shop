@@ -9,6 +9,7 @@ import { useDispatch,useSelector } from 'react-redux'
 import * as ServerActions from '../../APIController/action-creators/server.action-creators'
 import { bindActionCreators } from 'redux'  
 import{ State } from '../../APIController/reducers/root.reducer'
+import CartSidebar from './cart-sidebar.component'
 interface MetaTag{
     name?:string;
     property?:string;
@@ -28,18 +29,19 @@ const Layout:React.FC<LayoutProps> = ({children,title,className,meta}) => {
 
   const dispatch = useDispatch()
   const serverActions = bindActionCreators(ServerActions,dispatch)
-  const { user } = useSelector((state:State) => state.server)
+  const { user,tracks,msg } = useSelector((state:State) => state.server)
 
   useEffect(()=>{
     if(localStorage.getItem('access_token') && !user){
       serverActions.handleInit()
+      console.log(tracks,msg)
     }else{
       if(!user){
         navigate('/login')
       }
     }
     
-  },[user])
+  },[user,tracks])
   return (
       <div className='container'>
         {/* <Head>
@@ -48,7 +50,7 @@ const Layout:React.FC<LayoutProps> = ({children,title,className,meta}) => {
           <link rel="icon" href="/favicon.ico" />
           <link rel="stylesheet" href="https://use.typekit.net/ubp4mtr.css"></link>
         </Head> */}
-
+        <CartSidebar />
         <Nav />
         <Navbar />
         <div className={className}>

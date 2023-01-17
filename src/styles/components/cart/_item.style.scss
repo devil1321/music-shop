@@ -1,0 +1,55 @@
+.cart__item{
+    border-bottom: 1px solid $light-black;
+    @include createFlex(row,space-between,center,null);
+    div,p,h3{
+        width: 25%;
+        @include createFlex(row,flex-start,center,null)
+    }
+    p{
+        padding:0px 40px;
+        
+    }
+    &-img{
+        position: relative;
+        left:-6%;
+        top:0px;
+        width: 60px !important;
+        height: 60px !important;
+        img{
+            width: 100%;
+        }
+    }
+    h3{
+        position: relative;
+        left:12%;
+        top:0px;
+    }
+    &-quantity{
+        font-size: pxToRem(30);
+        font-weight: bold;
+        position: relative;
+        left:8%;
+        top:0px;
+        &-state{
+            color:$neon-green;
+        }
+        div{
+            cursor: pointer;
+            &:hover{
+                color:$light-black;
+            }
+        }
+    }
+    &-actions{
+        position: relative;
+        left:15.5%;
+        top:0px;
+        color:$light-black;
+        i{
+            cursor: pointer;
+            &:hover{
+                color: red;
+            }
+        }
+    }
+}

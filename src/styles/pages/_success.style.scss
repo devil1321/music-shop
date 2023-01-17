@@ -1,0 +1,13 @@
+.success{
+    min-height:60vh;
+    @include createFlex(column,center,center,null);
+    a{
+        padding:10px 20px;
+        width:150px;
+        background-color: $neon-green;
+        border-radius: 5px;
+        &:hover{
+            background-color: $neon-green-light;
+        }
+    }
+}

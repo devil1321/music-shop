@@ -1,7 +1,7 @@
-import Header from "./header";
-import Item from "./cart-item";
-import Summary from "./summary";
-import Empty from "./empty";
+import Header from "./header.component";
+import Item from "./cart-item.component";
+import Summary from "./summary.component";
+import Empty from "./empty.component";
 
 export default {
     Header,

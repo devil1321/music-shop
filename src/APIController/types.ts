@@ -1,3 +1,7 @@
+export enum UITypes{
+    HANDLE_SIDEBAR = 'HANDLE_SIDEBAR',
+}
+
 export enum PlayerTypes{
     SET_IS_PLAY = 'SET_IS_PLAY',
     SET_SRC = 'SET_SRC',

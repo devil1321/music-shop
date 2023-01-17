@@ -20,4 +20,17 @@
     &__divider {
         padding: 0px 5px;
     }
+    &__cart{
+        cursor: pointer;
+        position: relative;
+        top:0px;
+        left:0px;
+        margin:0px 20px;
+    }
+    &__cart-items{
+        position: absolute;
+        top:-7px;
+        left:-10px;
+        border-radius: 100%;
+    }
 }

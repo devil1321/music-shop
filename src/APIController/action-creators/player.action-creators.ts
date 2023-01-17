@@ -1,7 +1,7 @@
 import { Dispatch } from "redux";
 import { PlayerTypes } from "../types";
 import { MutableRefObject } from "react";
-import { Current } from "../interfaces";
+import { CartItem } from "../interfaces";
 
 
 export const handleIsPlay = (isPlay:boolean) => (dispatch:Dispatch<any>) =>{
@@ -17,7 +17,7 @@ export const handleSrc = (src:string) => (dispatch:Dispatch<any>) =>{
         src:src,
     })
 }
-export const handleCurrent = (current:Current) => (dispatch:Dispatch<any>) =>{
+export const handleCurrent = (current:CartItem) => (dispatch:Dispatch<any>) =>{
     dispatch({
         type:PlayerTypes.SET_CURRENT,
         current:current,

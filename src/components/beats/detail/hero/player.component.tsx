@@ -132,7 +132,7 @@ const handlePlay = ()=>{
     if(isLoad){
       if(isFetched && !isPlaySet){
         playerActions.handleSrc(tracks[0]?.base64)
-        playerActions.handleCurrent({qunatity:1,price_id:tracks[0].price_id,id:tracks[0].id,title:tracks[0].title,genres:tracks[0].genres.split(','),tags:tracks[0].tags.split(',')})
+        playerActions.handleCurrent({quantity:1,price_id:tracks[0]?.price_id,id:tracks[0]?.id,title:tracks[0]?.title,genres:tracks[0]?.genres.split(','),tags:tracks[0]?.tags.split(','),image:tracks[0].image,price:tracks[0].price})
         setIsPlaySet(true)
       }
       if(isPlay){  
@@ -145,10 +145,11 @@ const handlePlay = ()=>{
       handleAnimateBars()
       handleAnimateCircle()
     }else{
-      setIsLoad(true)
       serverActions.handleFetchTracks()
+      setIsLoad(true)
       setIsFetched(true)
     }
+    console.log(tracks,'tt')
     return globalHistory.listen(({ action }) => {
       if(user){ 
         if (action === 'PUSH') {
@@ -165,30 +166,33 @@ const handlePlay = ()=>{
         <div className="beats__player-overlay"></div>
         {image && <GatsbyImage image={image} alt="player-bg" />}
       </div>
-      <div className="beats__player-content">
-        <div className="beats__player-audio">
-          {isPlay 
-            ? <i className="fa-4x fa fa-pause"></i>
-            : <i  className="fa-4x fa fa-play"></i>
-          }
-        </div>
-        <canvas onClick={()=>{
-              playerActions.handleIsPlay(!isPlay)
-              }} className='beats__player-canvas-play' ref={canvasRefCircle} width={200} height={200}></canvas>
-        <div className="beats__player-info">
-          <div className="beats__player-title">
-            <h3>{title}</h3>
-            <i className="fa fa-share"></i>
+      {tracks.length > 0
+         && <div className='beats__player-content-wrapper'>
+          <div className="beats__player-content">
+            <div className="beats__player-audio">
+              {isPlay 
+                ? <i className="fa-4x fa fa-pause"></i>
+                : <i  className="fa-4x fa fa-play"></i> 
+              }
+            </div>
+            <canvas onClick={()=>{
+                  playerActions.handleIsPlay(!isPlay)
+                  }} className='beats__player-canvas-play' ref={canvasRefCircle} width={200} height={200}></canvas>
+            <div className="beats__player-info">
+              <div className="beats__player-title">
+                <h3>{title}</h3>
+                <i className="fa fa-share"></i>
+              </div>
+              <div className="beats__player-genres">
+                <div className='beats__player-content-title'>Genre</div>
+                {genres?.map((g:string) => <div key={g} className="beats__player-genre beats__player-content-item">{g}</div>)}
+              </div>
+              <div className="beats__player-tags">
+                {tags?.map((t:string) => <div key={t} className="beats__player-tag beats__player-content-item">{t}</div>)}
+              </div>
+            </div>
           </div>
-          <div className="beats__player-genres">
-            <div className='beats__player-content-title'>Genre</div>
-            {genres.map((g:string) => <div key={g} className="beats__player-genre beats__player-content-item">{g}</div>)}
-          </div>
-          <div className="beats__player-tags">
-            {tags.map((t:string) => <div key={t} className="beats__player-tag beats__player-content-item">{t}</div>)}
-          </div>
-        </div>
-      </div>
+        </div>}
     </div>
   )
 }

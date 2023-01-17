@@ -1,0 +1,14 @@
+.cart{
+    &__link{
+        margin: 10px 0px;
+        display: block;
+        width: 100%;
+        padding: 10px 0px;
+        background-color: $neon-green;
+        font-weight: bold;
+        text-align: center;
+        &:hover{
+            background-color: $neon-green-light;
+        }
+    }
+}

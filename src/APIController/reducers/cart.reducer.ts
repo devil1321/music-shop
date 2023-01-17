@@ -1,11 +1,9 @@
 import { CartTypes } from "../types"
 import { Action } from "../action-types/cart.action-types";
+import { CartItem } from "../interfaces";
 
 interface InitDataProps{
-  cart:{
-    id:string,
-    quantity:number;
-  }[]
+  cart:CartItem[]
 }
 
 const initData:InitDataProps = {
@@ -25,6 +23,11 @@ export default (state = initData,action:Action) =>{
                 cart:action.cart
             }
         case CartTypes.UPDATE_QUANTITY:
+            return {
+                ...state,
+                cart:action.cart
+            }
+        case CartTypes.CLEAR_CART:
             return {
                 ...state,
                 cart:action.cart

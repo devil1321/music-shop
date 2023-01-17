@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import * as ServerActions from '../../APIController/action-creators/server.action-creators'
-import { useDispatch } from 'react-redux'
+import { useDispatch,useSelector } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { State } from '../../APIController/reducers/root.reducer'
 const TrackForm:React.FC<{url:string,id:number}> = ({url,id}) => {
 
   const dispatch = useDispatch()
+  const { msg } = useSelector((state:State) => state.server)
   const serverActions = bindActionCreators(ServerActions, dispatch)
   const [formData,setFormData] = useState({
     file:'',
@@ -12,7 +14,9 @@ const TrackForm:React.FC<{url:string,id:number}> = ({url,id}) => {
     title:'',
     author:'',
     genres:'',
-    tags:''
+    tags:'',
+    price:'',
+    price_id:'',
   })
 
   const handleChange = (e:any) =>{
@@ -32,7 +36,9 @@ const TrackForm:React.FC<{url:string,id:number}> = ({url,id}) => {
   return (
     <div className="track-form">
     <h1>Add Track</h1>
+    <h3 className='track-form__msg'>{msg}</h3>
     <form className="track-form__form" onSubmit={(e)=>{
+        console.log(formData)
         e.preventDefault()
         serverActions.handleUpdateOrAddTrack(formData,url,id)
     }}>

@@ -18,8 +18,11 @@ const Summary = () => {
 
   const handleResult = () =>{
     if(cart?.length > 0){
-        const result = cart.reduce((a:CartItem,b:CartItem) => (a.quantity * a.price) + (b.quantity * b.price));
-        setResult(result)
+        let tempResult = 0
+        cart.forEach((cartItem:CartItem) =>{
+          tempResult += cartItem.quantity * cartItem.price
+        })
+        setResult(tempResult)
     }
   }
 
@@ -35,6 +38,7 @@ const Summary = () => {
                 <h3>${result}</h3>
             </div>
             <button onClick={()=>serverActions.handleCheckout(cart)}>Proceed To Checkout</button>
+            <button onClick={()=>cartActions.handleClearCart()}>Clear Cart</button>
         </div>
     </div>
   )

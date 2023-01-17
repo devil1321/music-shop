@@ -1,0 +1,22 @@
+.cancel{
+    min-height:60vh;
+    @include createFlex(column,center,center,null);
+    &__cart-wrapper{
+        width: 40%;
+    }
+    a{
+        display: block;
+        margin:10px auto;
+        text-align: center;
+        padding:10px 20px;
+        width:150px;
+        background-color: $neon-green;
+        border-radius: 5px;
+        &:first-of-type{
+            width: 250px;
+        }
+        &:hover{
+            background-color: $neon-green-light;
+        }
+    }
+}

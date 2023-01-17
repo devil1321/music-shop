@@ -1,12 +1,12 @@
 import { ServerTypes } from "../types"
 import { Action } from "../action-types/server.actions-types";
-import { Current } from "../interfaces";
 
 interface InitDataProps{
     file:any;
     tracks:any[]
     user:any;
     person:any;
+    msg:string;
     tokens:{
         access:string;
         refresh:string;
@@ -18,6 +18,7 @@ const initData:InitDataProps = {
     tracks:[],
     user:null,
     person:null,
+    msg:'',
     tokens:{
         access:'',
         refresh:'',
@@ -74,6 +75,7 @@ export default (state = initData,action:Action) =>{
         case ServerTypes.HANDLE_UPDATE_OR_ADD_TRACK:
             return {
                 ...state,
+                msg:action.msg
             }
         case ServerTypes.HANDLE_REMOVE_TRACK:
             return {

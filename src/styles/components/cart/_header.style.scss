@@ -1,0 +1,7 @@
+.cart__header{
+    font-weight: bold;
+    padding:20px 40px;
+    border-top: 1px solid $light-black;
+    border-bottom: 1px solid $light-black;
+    @include createFlex(row,space-between,center,null);
+}

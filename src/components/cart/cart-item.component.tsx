@@ -6,11 +6,11 @@ import * as CartActions from '../../APIController/action-creators/cart.action-cr
 import { State } from '../../APIController/reducers/root.reducer'
 
 interface CartItemProps{
-    cartItem: CartItem
+  cart_element: CartItem
 }
 
-const Item:React.FC<CartItemProps> = ({cartItem}) => {
-  const { id, image, title, quantity } = cartItem;
+const Item:React.FC<CartItemProps> = ({cart_element}) => {
+  const { id, image, title, quantity } = cart_element;
   const [quantityState,setQuantity] = useState<number>(quantity)
 
   const dispatch = useDispatch()
@@ -18,7 +18,10 @@ const Item:React.FC<CartItemProps> = ({cartItem}) => {
   const { cart } = useSelector((state:State) => state.cart)
 
   useEffect(()=>{
-    cartActions.handleUpdateCartQuantity(id,quantityState,cart)
+      cartActions.handleUpdateCartQuantity(id,quantityState,cart)
+      if(quantityState < 0){
+        cartActions.handleRemoveFromCart(id,cart)
+      }
   },[quantityState])
 
   return (
@@ -33,8 +36,8 @@ const Item:React.FC<CartItemProps> = ({cartItem}) => {
         <div className="cart__item-quantity-state">{quantityState}</div>
         <div onClick={()=>setQuantity(quantityState - 1)}>-</div>
       </div>
-      <div className="cart__actions">
-        <i className="fa fa-trash fa-2x"></i>
+      <div className="cart__item-actions">
+        <i onClick={()=>cartActions.handleRemoveFromCart(id,cart)} className="fa fa-trash fa-2x"></i>
       </div>
     </div>
   )

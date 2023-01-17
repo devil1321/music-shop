@@ -18,7 +18,7 @@ export const handleAddToCart = (quantity:number,item:CartItem,cart:CartItem[]) =
         cart: tempCart
     })
 } 
-export const handleRemoveFroCart = (id:number,cart:CartItem[]) => (dispatch:Dispatch<any>) =>{
+export const handleRemoveFromCart = (id:number,cart:CartItem[]) => (dispatch:Dispatch<any>) =>{
     const tempCart = cart.filter((item:any) => item.id !== id)
     dispatch({
         type: CartTypes.REMOVE_FROM_CART,

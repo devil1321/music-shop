@@ -1,0 +1,144 @@
+.cart-sidebar{
+    ::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+      }
+      ::-webkit-scrollbar-button {
+        width: 0px;
+        height: 0px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #e1e1e1;
+        border: 0px none #ffffff;
+        border-radius: 50px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #ffffff;
+      }
+      ::-webkit-scrollbar-thumb:active {
+        background: #ffffff;
+      }
+      ::-webkit-scrollbar-track {
+        margin-bottom: 0px;
+        margin-top: 0px;
+        background: #666666;
+        border: 0px none #ffffff;
+        border-radius: 50px;
+      }
+      ::-webkit-scrollbar-track:hover {
+        background: #666666;
+      }
+      ::-webkit-scrollbar-track:active {
+        background: #333333;
+      }
+      ::-webkit-scrollbar-corner {
+        background: transparent;
+      }
+    position: fixed;
+    right:0px;
+    top:0px;
+    z-index: 10;
+    width:300px;
+    height: 100vh;
+    background-color: $black;
+    border: 1px solid $light-black;
+    transition: all 1s ease-in-out;
+    h3:first-of-type{
+        padding-bottom: 20px;
+        font-weight: bold;
+        color:$neon-green;
+        text-align: center;
+        font-size: pxToRem(30);
+        border-bottom: 1px solid $light-black;
+    }
+
+    &__list{
+        height: 80vh;
+        overflow-y: scroll;
+    }
+    
+    &__item{
+        cursor: pointer;
+        padding-top:5px;
+        margin: 10px;
+        border-bottom: 1px solid $light-black;
+        border-radius: 5px;
+        @include createFlex(row,flex-start,center,wrap);
+        &:hover{
+            background-color: $medium-black;
+        }
+        p{
+            padding:0px;
+            border: 0px; 
+            margin: 0px;
+            color:white;
+            font-weight: 100;
+            font-size: pxToRem(16);
+                
+        }
+        i{
+           
+            cursor: pointer;
+            color:$light-black;
+            &:hover{
+                color:red;
+            }
+        }
+        &-img{
+            overflow: hidden;
+            border-radius: 5px;
+            width: 20%;
+            img{
+                width: 100%;
+            }
+        }
+        &-content{
+            width: 45%;
+            margin-left: 20px;
+        }
+    }
+    &__remove-item{
+        width: 40px;
+        margin-left: auto;
+    }
+
+    &__actions{
+        position: absolute;
+        
+        bottom: 0px;
+        left:50%;
+        transform: translateX(-50%);
+       
+    }
+    &__close,&__clear{
+        cursor: pointer;
+        min-width: 290px;
+        border-radius: 5px;
+        padding:1px;
+        margin:5px 0px;
+        height: 30px;
+        @include createFlex(row,center,center,null);
+        h3{
+            position: relative;
+            top:10px;
+            left:0px;
+            color:white !important;
+            border: 0px !important;
+            font-size: pxToRem(18) !important;
+        }
+    }
+    &__close{
+        background-color: red;
+
+        &:hover{
+            background-color: rgb(250, 78, 78);
+        }
+    }
+    &__clear{
+        background-color: orangered;
+
+        &:hover{
+            background-color: rgb(250, 78, 78);
+        }
+    }
+}

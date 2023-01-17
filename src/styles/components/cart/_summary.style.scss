@@ -1,0 +1,37 @@
+.cart__summary{
+    margin: 40px 0px;
+    width: 100%;
+    &-result{
+        h3{
+            font-weight: bold;
+        }
+    }
+    &-content{
+        width: 20%;
+        margin-left: auto;
+        button{
+            margin: 5px 0px;
+            min-width: 200px;
+            cursor: pointer;
+            padding:10px 20px;
+            border-radius: 5px;
+            background-color: $neon-green;
+            font-weight: bold;
+            outline: none;
+            border: 0px;
+            &:hover{
+                background-color: $neon-green-light;
+            }
+            &:active,&:focus{
+                outline: none;
+                border: 0px;
+            }
+            &:last-of-type{
+                background-color: orangered;
+                &:hover{
+                    background-color: red;
+                }
+            }
+        }
+    }
+}

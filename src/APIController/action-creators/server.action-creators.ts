@@ -213,6 +213,8 @@ export const handleUpdateOrAddTrack = (formData:any,url:string,id:number) => (di
     form.append('author',formData.author)
     form.append('genres',formData.genres)
     form.append('tags',formData.tags)
+    form.append('price',formData.price)
+    form.append('price_id',formData.price_id)
 
     axios.post(`https://devil1321.pythonanywhere.com${url}`,form,{
         headers:{
@@ -223,10 +225,16 @@ export const handleUpdateOrAddTrack = (formData:any,url:string,id:number) => (di
         .then(res => {
             dispatch({
                 type:ServerTypes.HANDLE_UPDATE_OR_ADD_TRACK,
-                msg:'Track Updated'
+                msg:'Track Updated Or Added successfully'
             })
         })
-        .catch((err:any) => console.log(err))
+        .catch((err:any) => {
+            console.log(err)
+            dispatch({
+                type:ServerTypes.HANDLE_UPDATE_OR_ADD_TRACK,
+                msg:'Track Not Updated Or Added'
+            })
+        })
 }
 export const handleRemoveTrack = (id:number) => (dispatch:Dispatch<any>) =>{
     const token = getToken()

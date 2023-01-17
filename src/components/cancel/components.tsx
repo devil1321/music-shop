@@ -1,4 +1,4 @@
-import Item from "./cart-item";
+import Item from "./cart-item.component";
 
 export default {
     Item

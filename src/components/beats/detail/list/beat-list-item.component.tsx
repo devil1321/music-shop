@@ -6,7 +6,7 @@ import * as CartActions from '../../../../APIController/action-creators/cart.act
 import { bindActionCreators } from 'redux'  
 import { State } from '../../../../APIController/reducers/root.reducer'
 import { CartItem } from '../../../../APIController/interfaces'
-import { Link } from 'gatsby'
+import useInCart from '../../../../hooks/useInCart'
 
 
 interface ItemProps{
@@ -18,7 +18,7 @@ interface ItemProps{
 
 const Item:React.FC<ItemProps> = ({isActive,handleMakeActive,index,item}) => {
 
-    const { quantity, image,title,price,genres,tags,source } = item
+    const { id,quantity, image,title,price,price_id,genres,tags,source } = item
 
     const [bpm,setBpm] = useState<number>(0)
     const [isLoad,setIsLoad] = useState<boolean>(false)
@@ -31,6 +31,8 @@ const Item:React.FC<ItemProps> = ({isActive,handleMakeActive,index,item}) => {
     const { tracks } = useSelector((state:State) => state.server)
     const { src } = useSelector((state:State) => state.player)
     const { cart } = useSelector((state:State) => state.cart)
+
+    const [isInCart,setIsInCart] = useInCart(id)
    
 
     function _base64ToArrayBuffer(base64:any) {
@@ -191,9 +193,9 @@ useEffect(()=>{
 },[isLoad,tracks,src])
 
   return (
-    <div className='beats__beat-item'
+   <div className='beats__beat-item'
         onClick={()=>{
-          playerActions.handleCurrent({title,genres,tags})
+          playerActions.handleCurrent({id,quantity, image,title,price,price_id,genres,tags})
         }}>
         <div className="beats__beat-item-image">
             {image && <img src={image} alt="beat-img" />}
@@ -229,7 +231,7 @@ useEffect(()=>{
               <div className='beats__beat-item-icon'>
                 <p>{price}$</p>
               </div>
-              <button onClick={()=>cartActions.handleAddToCart(quantity,item,cart)}><i className="fa fa-shopping-cart"></i>Add To Cart</button>
+              <button onClick={()=>cartActions.handleAddToCart(quantity,item,cart)}><i className="fa fa-shopping-cart"></i>{!isInCart ? 'Add To Cart' : 'In Cart'}</button>
         </div>
       </div>
     </div>

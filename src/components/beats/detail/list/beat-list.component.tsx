@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Item from './beat-list-item.component';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
-import { useSelector, useDispatch } from 'react-redux'
-import * as ServerActions from '../../../../APIController/action-creators/server.action-creators'
-import { bindActionCreators } from 'redux'  
+import { useSelector } from 'react-redux'
 import { State } from '../../../../APIController/reducers/root.reducer'
+import Global from '../../../../components/global/components'
 
 
 const List:React.FC<{image:IGatsbyImageData}> = ({image}) => {
@@ -52,7 +51,10 @@ const List:React.FC<{image:IGatsbyImageData}> = ({image}) => {
   
 
   return (
-    <div className='beats__beats-list'>
+    <React.Fragment>
+    {tracks?.length === 0
+    ? <Global.Title html="<b>Loading Tracks</b>" />
+    : <div className='beats__beats-list'>
       {activeTracks.map((t:any,i:number) => {
                                             const item = {
                                               id:t.id,
@@ -69,10 +71,12 @@ const List:React.FC<{image:IGatsbyImageData}> = ({image}) => {
                                               isActive={t.active} 
                                               index={i} 
                                               handleMakeActive={handleMakeActive} 
-                                              key={i} 
+                                              key={t.title} 
                                               item={item} />
                                               })}
     </div>
+    }</React.Fragment>
+
   )
 }
 
