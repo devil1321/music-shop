@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import * as ServerActions from '../APIController/action-creators/server.action-creators'
 import { bindActionCreators } from 'redux'  
 import { State } from '../APIController/reducers/root.reducer'
+import useMessage from '../hooks/useMessage'
 
 interface LoginProps {
     data: {
@@ -18,7 +19,10 @@ interface LoginProps {
 const Login:React.FC<LoginProps> = ({data}) => {
 
   const image = data.allFile.nodes[0].publicURL
-  const { user } = useSelector((state:State) => state.server)
+  const { user,msg } = useSelector((state:State) => state.server)
+
+  const [message,setMessage] = useMessage(msg)
+
   const dispatch = useDispatch()
   const serverActions = bindActionCreators(ServerActions,dispatch)
 
@@ -39,6 +43,7 @@ const Login:React.FC<LoginProps> = ({data}) => {
        <form className="cred" method="POST" onSubmit={(e:any) => serverActions.handleLogin(e)}>
             <div className="cred__inner-form">
                 <img  src={image} alt="login-pic" />
+                <h3>{message as string}</h3>
                 <div className="cred__field">
                     <label>Username |</label>    
                     <input type="text" name="username" />

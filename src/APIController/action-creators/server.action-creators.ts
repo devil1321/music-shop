@@ -2,6 +2,7 @@ import { ServerTypes } from "../types";
 import { Dispatch } from "redux";
 import axios from 'axios'
 import { access } from "fs";
+import { CartItem, Track } from "../interfaces";
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
 axios.defaults.xsrfCookieName = "csrftoken";
 
@@ -10,6 +11,13 @@ const getToken = () =>{
 }
 const getTokenRefresh = () =>{
     return localStorage.getItem('refresh_token')
+}
+
+export const handleMessage = (message: string) => (dispatch:Dispatch<any>) =>{
+    dispatch({
+        type:ServerTypes.HANDLE_MESSAGE,
+        msg:message
+    })
 }
 
 export const handleLogin = (e:any) => (dispatch:Dispatch<any>) =>{
@@ -37,15 +45,16 @@ export const handleLogin = (e:any) => (dispatch:Dispatch<any>) =>{
                     tokens:data,
                     msg:''
                 })
-            }else{
-                dispatch({
-                    type:ServerTypes.LOGIN,
-                    user:null,
-                    msg:data.msg
-                })
             }
         })
-        .catch((err:any) => console.log(err))
+        .catch((err:any) =>{
+            dispatch({
+                type:ServerTypes.LOGIN,
+                user:null,
+                msg:'You are not logged in'
+            })
+         console.log(err)
+        })
 }
 
 export const handleLogout = () => (dispatch:Dispatch<any>) =>{
@@ -61,12 +70,12 @@ export const handleLogout = () => (dispatch:Dispatch<any>) =>{
 export const handleSignUp = (e:any) => (dispatch:Dispatch<any>) =>{
     e.preventDefault()
     const toParse = new FormData(e.target)
-    const password_1 = toParse.get('password_1')
-    const password_2 = toParse.get('password_2')
+    const password_1 = toParse.get('password_1') as string
+    const password_2 = toParse.get('password_2') as string
     if(password_1 == password_2){
         const email = toParse.get('email') as string
         const username = toParse.get('username') as string
-        const password = toParse.get('password') as string
+        const password = toParse.get('password_1') as string
         const formData = new FormData()
         formData.append('email',email)
         formData.append('password',password)
@@ -85,7 +94,6 @@ export const handleSignUp = (e:any) => (dispatch:Dispatch<any>) =>{
             }
         }) 
         .then(data => {
-            console.log('data',data)
             if(!data?.msg){
                 dispatch({
                     type:ServerTypes.SIGN_UP,
@@ -199,10 +207,15 @@ export const handleFetchTracks = () => (dispatch:Dispatch<any>) =>{
         .catch((err:any) => console.log(err))
 }
 
-export const handleFetchTrack = (name:string) => (dispatch:Dispatch<any>) =>{
+export const handleFetchTrack = (id:number) => (dispatch:Dispatch<any>) =>{
+    const token = getToken()
     axios.post('https://devil1321.pythonanywhere.com/file/',{
         params:{
-            name:name
+            id:id
+        }
+    },{
+        headers:{
+            'Authorization':`Bearer ${token}`
         }
     })
         .then(res => {
@@ -213,6 +226,15 @@ export const handleFetchTrack = (name:string) => (dispatch:Dispatch<any>) =>{
         })
         .catch((err:any) => console.log(err))
 }
+
+export const handleFilterTrack = (id:number,tracks:Track[]) => (dispatch:Dispatch<any>) =>{
+        const track = tracks.find((t:Track) => t.id === id) as Track 
+        dispatch({
+            type:ServerTypes.FILTER_TRACK,
+            file:track
+        })
+}
+
 
 export const handleUpdateOrAddTrack = (formData:any,url:string,id:number) => (dispatch:Dispatch<any>) =>{
     const token = getToken()
@@ -249,9 +271,9 @@ export const handleUpdateOrAddTrack = (formData:any,url:string,id:number) => (di
 }
 export const handleRemoveTrack = (id:number) => (dispatch:Dispatch<any>) =>{
     const token = getToken()
-    axios.post(`https://devil1321.pythonanywhere.com/delete-track/` + id,{
+    axios.post(`https://devil1321.pythonanywhere.com/delete-track/` + id,{},{
         headers:{
-            'Authorization':`Bearer ${token}`
+            'Authorization':`Bearer ${token}`,
         }
     })
         .then(res => {

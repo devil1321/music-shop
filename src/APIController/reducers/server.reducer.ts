@@ -14,7 +14,16 @@ interface InitDataProps{
 }
 
 const initData:InitDataProps = {
-    file:undefined,
+    file:{
+        file:'',
+        image:'',
+        title:'',
+        author:'',
+        genres:'',
+        tags:'',
+        price:'',
+        price_id:'',
+    },
     tracks:[],
     user:null,
     person:null,
@@ -80,6 +89,17 @@ export default (state = initData,action:Action) =>{
         case ServerTypes.HANDLE_REMOVE_TRACK:
             return {
                 ...state,
+            }
+     
+        case ServerTypes.HANDLE_MESSAGE:
+            return {
+                ...state,
+                msg:action.msg
+            }
+        case ServerTypes.FILTER_TRACK:
+            return {
+                ...state,
+                file:action.file
             }
         default:
             return {

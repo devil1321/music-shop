@@ -1,9 +1,10 @@
 import { Link, graphql,navigate } from 'gatsby'
-import React,{useEffect} from 'react'
+import React,{useEffect, useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import * as ServerActions from '../APIController/action-creators/server.action-creators'
 import { bindActionCreators } from 'redux'  
 import { State } from '../APIController/reducers/root.reducer'
+import useMessage from '../hooks/useMessage'
 
 interface LoginProps {
     data: {
@@ -19,10 +20,13 @@ const Login:React.FC<LoginProps> = ({data}) => {
 
   const image = data.allFile.nodes[0].publicURL
   
-  const { user} = useSelector((state:State) => state.server)
+  
+  const { user,msg } = useSelector((state:State) => state.server)
   const dispatch = useDispatch()
   const serverActions = bindActionCreators(ServerActions,dispatch)
-
+  
+  const [message,setMessage] = useMessage(msg)
+  
   useEffect(()=>{
     if(!user){
       serverActions.handleInit()
@@ -37,6 +41,7 @@ const Login:React.FC<LoginProps> = ({data}) => {
        <form className="cred" method="POST" onSubmit={(e:any) => serverActions.handleSignUp(e)}>
             <div className="cred__inner-form">
                 <img  src={image} alt="login-pic" />
+                <h3>{message as string}</h3>
                 <div className="cred__field">
                     <label>Username |</label>    
                     <input type="text" name="username" />

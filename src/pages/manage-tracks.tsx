@@ -21,7 +21,7 @@ const ManageTracks = () => {
     if(localStorage.getItem('access_token') && !user){
       serverActions.handleFetchTracks()
     }
-    if(!user?.is_staff){
+    if(user && !user?.is_staff){
         navigate('/not-allow')
     }
     if(isForm){
@@ -57,6 +57,7 @@ const ManageTracks = () => {
                         setIsForm(true)
                         setId(track.id)
                         setUrl('/update-track/')
+                        serverActions.handleFilterTrack(track.id,tracks)
                     }} href="#" className="manage-tracks__btn-edit">
                         <i className="fa fa-edit fa-2x"></i>
                     </a>
@@ -70,7 +71,7 @@ const ManageTracks = () => {
             setUrl('/add-track/')
         }} className="manage-tracks__btn-add">{type}</button>
     </div>
-    {isForm && <Admin.TrackForm url={url} id={id} />}
+    {isForm && <Admin.TrackForm  url={url} id={id} />}
 </div>
 </Admin.Layout>
   )
