@@ -75,14 +75,14 @@ const TrackForm:React.FC<{url:string,id:number}> = ({url,id}) => {
                 <i className="fa fa-file"></i>
                Load Track:
             </label>
-            <input required onChange={(e)=>handleChange(e)} type="file" name="file"  value={formData.file} />
+            <input required onChange={(e)=>handleChange(e)} type="file" name="file"   />
         </div>
         <div className="track-form__field">
             <label >
                 <i className="fa fa-file"></i>
                Load Image:
             </label>
-            <input required onChange={(e)=>handleChange(e)} type="file" name="image"  value={formData.image}/>
+            <input required onChange={(e)=>handleChange(e)} type="file" name="image" />
         </div>
         <div className="track-form__field">
             <label >Title:</label>
