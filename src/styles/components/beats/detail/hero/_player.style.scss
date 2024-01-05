@@ -59,6 +59,9 @@
             left:5.2%;
             z-index: 4;
             color:$neon-green;
+            @include breakpoint-up(xlarge){
+                left:3.9%;
+            }
             @include breakpoint-down(medium-sm){
                 left:8%;
             }
