@@ -3,6 +3,8 @@ import { Link, graphql } from "gatsby"
 import { GatsbyImage, IGatsbyImageData  } from "gatsby-plugin-image"
 import { useDynamicImage } from "../hooks/useImage"
 import { PricingPageImages } from "../interfaces"
+import '../styles/styles.scss'
+import '../font-awesome/css/all.css'
 
 interface Props_500 {
     data: PricingPageImages
