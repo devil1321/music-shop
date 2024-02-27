@@ -132,7 +132,7 @@ const handlePlay = ()=>{
     if(isLoad){
       if(isFetched && !isPlaySet){
         playerActions.handleSrc(tracks[0]?.base64)
-        playerActions.handleCurrent({quantity:1,price_id:tracks[0]?.price_id,id:tracks[0]?.id,title:tracks[0]?.title,genres:tracks[0]?.genres.split(','),tags:tracks[0]?.tags.split(','),image:tracks[0].image,price:tracks[0].price})
+        playerActions.handleCurrent({quantity:1,price_id:tracks[0]?.price_id,id:tracks[0]?.id,title:tracks[0]?.title,genres:tracks[0]?.genres.split(','),tags:tracks[0]?.tags.split(','),image:tracks[0]?.image,price:tracks[0]?.price})
         setIsPlaySet(true)
       }
       if(isPlay){  
