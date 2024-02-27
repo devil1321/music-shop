@@ -5,6 +5,8 @@ import * as ServerActions from '../APIController/action-creators/server.action-c
 import { bindActionCreators } from 'redux'  
 import { State } from '../APIController/reducers/root.reducer'
 import useMessage from '../hooks/useMessage'
+import '../styles/styles.scss'
+import '../font-awesome/css/all.css'
 
 interface LoginProps {
     data: {
